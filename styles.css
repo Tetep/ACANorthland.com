@@ -347,7 +347,52 @@ img { max-width: 100%; display: block; }
   .aca-section { padding: 56px 18px; }
   .aca-footer-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
   .dir-grid { padding: 24px 18px; gap: 14px; }
-  .dir-toolbar { padding: 16px 18px; top: 56px; }
+
+  /* Compact toolbar: horizontal-scroll each chip row so chips
+     stay one line and don't carpet the screen vertically. */
+  .dir-toolbar { padding: 10px 0; top: 56px; }
+  .dir-toolbar-inner { gap: 6px; padding: 0; }
+  .dir-search-row { padding: 0 14px; }
+  .dir-search { font-size: 14px; padding: 10px 14px; min-width: 0; }
+
+  .dir-chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 4px 14px;
+    margin: 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+    mask-image: linear-gradient(to right, transparent 0, #000 14px, #000 calc(100% - 14px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 14px, #000 calc(100% - 14px), transparent 100%);
+  }
+  .dir-chips::-webkit-scrollbar { height: 3px; }
+  .dir-chips::-webkit-scrollbar-track { background: transparent; }
+  .dir-chips::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  .dir-chip {
+    flex-shrink: 0;
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+  .dir-chip-group-label {
+    font-size: 10px;
+    flex-shrink: 0;
+    margin: 0 4px 0 0;
+    letter-spacing: 0.1em;
+  }
+  .dir-az-bar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 6px 14px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .dir-az-bar::-webkit-scrollbar { display: none; }
+  .dir-az-bar a { width: 24px; height: 24px; font-size: 11px; flex-shrink: 0; }
+
+  /* Result count: tighter */
+  .dir-count { padding: 8px 14px 0; font-size: 12px; }
 }
 
 @media (max-width: 480px) {
@@ -361,9 +406,8 @@ img { max-width: 100%; display: block; }
   .hub-grid { gap: 16px; }
   .hub-card-img { height: 180px; }
   .hub-card-body { padding: 22px; }
-  .dir-grid { grid-template-columns: 1fr; padding: 20px 14px; }
-  .dir-card { padding: 18px; }
-  .dir-az-bar a { width: 24px; height: 24px; font-size: 11px; }
+  .dir-grid { grid-template-columns: 1fr; padding: 16px 12px; gap: 10px; }
+  .dir-card { padding: 16px; }
   .aca-footer-inner { grid-template-columns: 1fr; gap: 22px; }
   .aca-info-strip { padding: 36px 16px; }
 }
