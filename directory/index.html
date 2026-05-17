@@ -11,15 +11,20 @@
     <link rel="stylesheet" href="../styles.css">
     <style>
       .demo-banner {
-        background: #fff7e0;
-        border-bottom: 2px solid #c48c37;
-        color: #4a3c2c;
-        padding: 14px clamp(18px, 5vw, 48px);
-        font-size: 14px;
+        background: #8a2828;
+        color: #f5ede1;
+        padding: 10px clamp(18px, 5vw, 48px);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
         text-align: center;
-        font-weight: 500;
+        border-bottom: 1px solid rgba(245,237,225,0.18);
       }
-      .demo-banner strong { color: #8a2828; }
+      .demo-banner strong { color: #e8c670; font-weight: 700; }
+      @media (max-width: 480px) {
+        .demo-banner { font-size: 11px; padding: 8px 14px; letter-spacing: 0.12em; line-height: 1.5; }
+      }
       .dir-card-meta { margin: 0 0 12px; }
       .dir-card-addr {
         font-size: 12px; color: var(--muted);
@@ -58,7 +63,7 @@
         <a class="aca-brand" href="../">
           <span>
             <strong>ACA Northland</strong>
-            <small>Business Club &middot; est. 1894</small>
+            <small>Business Club &middot; At Castle Hall, 1894</small>
           </span>
         </a>
         <nav class="aca-nav">
@@ -73,7 +78,7 @@
 
     <main>
       <div class="demo-banner">
-        <strong>Demo data:</strong> populated with 579 businesses scraped from Liberty Chamber (380) + Gladstone Chamber (199) for design review. <strong>These are NOT ACA Business Club members.</strong> Real ACA member data replaces this for launch.
+        <strong>Demo Preview</strong> &middot; Directory populated with Liberty + Gladstone Chamber businesses (579 listings) &middot; Real ACA member listings coming soon
       </div>
 
       <section class="aca-hero sepia">
@@ -14370,7 +14375,7 @@
         </div>
       </div>
       <div class="aca-footer-bottom">
-        &copy; ACA Northland Business Club &middot; Liberty Square &middot; Est. 1894
+        &copy; ACA Northland Business Club &middot; Liberty Square &middot; Anchored at Castle Hall &middot; 1894
       </div>
     </footer>
 
