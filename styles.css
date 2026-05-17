@@ -6,8 +6,10 @@
 
 :root {
   /* ============ ACA CORPORATE LAYER (parent brand) ============ */
-  --aca-deep:         #1D2F2C;  /* primary dark teal — header, footer, info strip */
-  --aca-deeper:       #0F1A17;  /* deepest — footer bottom strip */
+  --aca-teal-light:   #3F7D85;  /* lighter blue-teal — top of gradient sections */
+  --aca-teal-mid:     #2D5C61;  /* mid teal — middle stop in gradients */
+  --aca-deep:         #1D2F2C;  /* primary dark teal — header, footer base */
+  --aca-deeper:       #0F1A17;  /* deepest — footer bottom + section ends */
   --aca-deep-lighter: #2C4A45;  /* hover, dark card bg on navy */
   --aca-navy:         #1A2332;  /* secondary dark — Pillars section */
   --aca-pale-blue:    #C8DEE8;  /* soft accent — future info callouts */
@@ -447,15 +449,23 @@ img { max-width: 100%; display: block; }
 
 /* ---------- INFO STRIP ---------- */
 .aca-info-strip {
-  background: var(--aca-deep); color: var(--paper-on-dark);
-  padding: 48px clamp(18px, 5vw, 48px); text-align: center;
+  background: linear-gradient(180deg,
+    var(--aca-teal-light) 0%,
+    var(--aca-teal-mid) 55%,
+    var(--aca-deep) 100%);
+  color: var(--paper-on-dark);
+  padding: 72px clamp(18px, 5vw, 48px);
+  text-align: center;
 }
 .aca-info-strip h2 { color: var(--paper-on-dark); }
-.aca-info-strip p { color: rgba(248,246,242,0.86); max-width: 640px; margin: 0 auto; }
+.aca-info-strip p { color: rgba(248,246,242,0.92); max-width: 640px; margin: 0 auto; }
 
 /* ---------- FOOTER ---------- */
 .aca-footer {
-  background: var(--aca-deep); color: var(--paper-on-dark);
+  background: linear-gradient(180deg,
+    var(--aca-deep) 0%,
+    var(--aca-deeper) 100%);
+  color: var(--paper-on-dark);
   padding: 56px clamp(18px, 5vw, 48px) 24px;
   border-top: 4px solid var(--gold);
 }
@@ -477,19 +487,17 @@ img { max-width: 100%; display: block; }
 }
 .aca-footer-brand p { color: rgba(248,246,242,0.78); font-size: 14px; line-height: 1.6; margin: 0; }
 .aca-footer-bottom {
-  margin: 32px 0 -24px;
-  padding: 18px clamp(18px, 5vw, 48px);
-  background: var(--aca-deeper);
-  border-top: 1px solid rgba(248,246,242,0.08);
+  max-width: 1280px; margin: 32px auto 0; padding-top: 24px;
+  border-top: 1px solid rgba(248,246,242,0.12);
   font-size: 12px; color: rgba(248,246,242,0.55); text-align: center;
-  /* Extend background full-width past the footer's horizontal padding */
-  box-shadow: 0 0 0 100vmax var(--aca-deeper);
-  clip-path: inset(0 -100vmax);
 }
 
 /* ---------- THREE PILLARS (homepage) ---------- */
 .pillars-section {
-  background: var(--aca-navy);
+  background: linear-gradient(180deg,
+    var(--aca-deep) 0%,
+    var(--aca-navy) 55%,
+    var(--aca-deeper) 100%);
   border-top: 1px solid rgba(248,246,242,0.06);
   border-bottom: 1px solid rgba(248,246,242,0.06);
   max-width: none;
