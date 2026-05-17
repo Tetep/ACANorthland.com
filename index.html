@@ -29,8 +29,122 @@
     </header>
 
     <main>
-      <section class="aca-hero has-bg-image">
-        <div class="aca-hero-inner">
+      <section class="hero-slider" aria-roledescription="carousel" aria-label="ACA Northland highlights">
+        <div class="hero-slides">
+          <article class="hero-slide hero-slide-letstalk active" role="group" aria-roledescription="slide" aria-label="Slide 1 of 3 — Let's Talk">
+            <div class="letstalk-grid">
+              <div class="letstalk-col">
+                <div class="letstalk-bubble is-headline">Let&rsquo;s Talk:</div>
+                <div class="letstalk-bubble is-logo">
+                  <img src="assets/logos/aca-white.png" alt="ACA Business Club">
+                </div>
+              </div>
+              <div class="letstalk-col">
+                <div class="letstalk-bubble">
+                  <strong>Northland</strong>
+                  <span>1400 NW Vivion Rd<br>Kansas City, MO 64118</span>
+                </div>
+                <div class="letstalk-bubble">
+                  <strong>NEW Liberty Location</strong>
+                  <span>1 East Kansas Street<br>Liberty, MO 64068</span>
+                </div>
+              </div>
+            </div>
+            <a class="slide-cta" href="#" aria-label="Learn more about ACA Northland">Learn More</a>
+          </article>
+
+          <article class="hero-slide hero-slide-sponsor" role="group" aria-roledescription="slide" aria-label="Slide 2 of 3 — Coffee Sponsor, Liberty">
+            <div class="sponsor-card">
+              <div class="sponsor-card-header">
+                <h2>Coffee Sponsor &mdash; Liberty</h2>
+              </div>
+              <div class="sponsor-photo" aria-hidden="true"><span>[ Sponsor Photo ]</span></div>
+              <div class="sponsor-info">
+                <p class="sponsor-name">[Sponsor Name]</p>
+                <p class="sponsor-role">[Role / Title]</p>
+                <div class="sponsor-divider"></div>
+                <p class="sponsor-business">[Sponsor Business Name]</p>
+                <div class="sponsor-contact">
+                  <span><span class="ico">&#127760;</span><span class="placeholder">[website]</span></span>
+                  <span><span class="ico">&#9742;</span><span class="placeholder">[phone]</span></span>
+                  <span><span class="ico">&#9993;</span><span class="placeholder">[email]</span></span>
+                </div>
+                <p class="sponsor-desc">[Brief description of the sponsor &mdash; what they provide for ACA Liberty.]</p>
+                <a class="slide-cta" href="#" aria-label="Learn more about the Liberty coffee sponsor">Learn More</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="hero-slide hero-slide-sponsor" role="group" aria-roledescription="slide" aria-label="Slide 3 of 3 — Coffee Sponsor, Northland">
+            <div class="sponsor-card">
+              <div class="sponsor-card-header">
+                <h2>Coffee Sponsor &mdash; Northland</h2>
+              </div>
+              <div class="sponsor-photo" aria-hidden="true"><span>[ Sponsor Photo ]</span></div>
+              <div class="sponsor-info">
+                <p class="sponsor-name">[Sponsor Name]</p>
+                <p class="sponsor-role">[Role / Title]</p>
+                <div class="sponsor-divider"></div>
+                <p class="sponsor-business">[Sponsor Business Name]</p>
+                <div class="sponsor-contact">
+                  <span><span class="ico">&#127760;</span><span class="placeholder">[website]</span></span>
+                  <span><span class="ico">&#9742;</span><span class="placeholder">[phone]</span></span>
+                  <span><span class="ico">&#9993;</span><span class="placeholder">[email]</span></span>
+                </div>
+                <p class="sponsor-desc">[Brief description of the sponsor &mdash; what they provide for ACA Northland.]</p>
+                <a class="slide-cta" href="#" aria-label="Learn more about the Northland coffee sponsor">Learn More</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="hero-slider-dots" role="tablist" aria-label="Slide navigation">
+          <button class="hero-slider-dot active" type="button" aria-label="Show slide 1"></button>
+          <button class="hero-slider-dot" type="button" aria-label="Show slide 2"></button>
+          <button class="hero-slider-dot" type="button" aria-label="Show slide 3"></button>
+        </div>
+
+        <script>
+          (function () {
+            var slider = document.querySelector('.hero-slider');
+            if (!slider) return;
+            var slides = slider.querySelectorAll('.hero-slide');
+            var dots = slider.querySelectorAll('.hero-slider-dot');
+            var total = slides.length;
+            var current = 0;
+            var timer = null;
+            var INTERVAL = 5000;
+            var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            function show(i) {
+              slides.forEach(function (s, idx) { s.classList.toggle('active', idx === i); });
+              dots.forEach(function (d, idx) { d.classList.toggle('active', idx === i); });
+              current = i;
+            }
+            function next() { show((current + 1) % total); }
+            function start() { if (reduce) return; stop(); timer = setInterval(next, INTERVAL); }
+            function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+            dots.forEach(function (d, idx) {
+              d.addEventListener('click', function () { show(idx); start(); });
+            });
+            slider.addEventListener('mouseenter', stop);
+            slider.addEventListener('mouseleave', start);
+            slider.addEventListener('focusin', stop);
+            slider.addEventListener('focusout', start);
+
+            // Don't auto-jump on placeholder Learn More clicks
+            slider.querySelectorAll('.slide-cta[href="#"]').forEach(function (a) {
+              a.addEventListener('click', function (e) { e.preventDefault(); });
+            });
+
+            start();
+          })();
+        </script>
+      </section>
+
+      <section class="hero-cta-strip">
+        <div class="hero-cta-strip-inner">
           <span class="aca-eyebrow">Northland Chapter of the ACA</span>
           <h1>Welcome to the ACA Business Club, Northland</h1>
           <p class="aca-lede">
