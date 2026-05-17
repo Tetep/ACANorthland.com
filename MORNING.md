@@ -1,57 +1,113 @@
-# Morning queue — UPDATED 2026-05-16/17 night
+# Morning queue — UPDATED 2026-05-17 (late night)
 
-## ✅ Resolved by commit `4c8612c` (homepage strategic rewrite)
+## ⏳ Pass D — ACA Palette Swap (NEW — queued by Bob)
 
-**Pass A (amber 1894 continuity fixes) and Pass B (Vivion/Liberty positioning flip) — both OBSOLETE.**
+Bob extracted the full ACA brand palette from the parent corporate site via ColorZilla. Saved to memory at `reference_aca_corporate_brand.md`. Apply across the site.
 
-The new strategic narrative resolves the false continuity claim cleanly:
+### Step 1 — Replace `:root` block in `styles.css`
 
-| 1882 | Kansas City Club founded (ACA's roots — Eisenhower, Truman, Bradley) |
-| 1894 | Castle Hall built on Liberty Square (Pythian Castle building) |
-| 2026 | ACA Northland chapter reignites Castle Hall as Northland home |
+```css
+:root {
+  /* ============ ACA CORPORATE LAYER ============ */
+  --aca-deep: #1D2F2C;           /* primary dark teal — hero, header */
+  --aca-deeper: #0F1A17;         /* deepest — footer bottom strip */
+  --aca-deep-lighter: #2C4A45;   /* quote boxes, hover, card bg on dark */
+  --aca-navy: #1A2332;           /* secondary dark — nav alt, dark sections */
+  --aca-pale-blue: #C8DEE8;      /* soft accent — info callouts, highlights */
 
-Two American traditions converging in one Northland room. Both verifiable, neither conflated. Pythian heritage of the building stays separate from ACA's parent-club lineage.
+  /* ============ HERITAGE BODY LAYER (keep) ============ */
+  --paper: #F4ECD8;
+  --paper-deep: #E8DCC0;
+  --paper-shadow: #D8C9A8;
 
-## ⏳ Still on the queue
+  /* ============ SHARED ACCENTS ============ */
+  --gold: #B89A4B;
+  --gold-bright: #D4B36A;
+  --gold-deep: #8F7637;
+  --crimson: #8B2635;
 
-### Pass C — Side items
+  /* ============ TEXT ============ */
+  --ink: #1F1A17;
+  --ink-soft: #3D332B;
+  --paper-on-dark: #F8F6F2;
+}
+```
 
-- **`.org` redirects** (waiting on the two domain names from registrar). Cloudflare playbook saved in memory.
-- **Cloudflare orange cloud** for acanorthland.com — wait 24-48h after cert provisioning, then set SSL/TLS to **Full (strict)**, then flip DNS records to proxied.
-- ~~1894.tours Enforce HTTPS~~ ✅ DONE (Let's Encrypt cert valid for `1894.tours` + `www.1894.tours`)
+(Currently `styles.css` has different var names — `--paper-soft`, `--green-dot`, etc. Map old → new where needed. The existing palette is close but not exact to ACA corporate.)
 
-### Phase B (when content is ready)
+### Step 2 — Section mapping (apply across all 5 pages)
+
+| Element | New value |
+|---|---|
+| Header bg | `--aca-deep` |
+| Header text | `--paper-on-dark` |
+| Header active link underline | `--gold` |
+| Hero bg gradient | `--aca-deep` → `--aca-deeper` |
+| Hero primary CTA | `--gold` bg, `--aca-deep` text |
+| Hero outline CTA | `--paper-on-dark` border + text |
+| Pull-quote/testimonial | `--aca-deep-lighter` bg |
+| Info callout banners | `--aca-pale-blue` bg, `--aca-navy` text |
+| "Two Northland Locations" section | `--paper` (heritage — keep) |
+| Hub cards | `--paper-deep` (heritage — keep) |
+| Directory bg | `--paper` (keep) |
+| BETA banner on directory | `--crimson` (keep — preserves contrast) |
+| Footer top | `--aca-deep` |
+| Footer bottom strip | `--aca-deeper` |
+| Three Pillars section | `--aca-navy` bg, `--paper-on-dark` text, `--gold` icons |
+
+### Step 3 — Mobile contrast check
+The dark-light hybrid (paper sections + dark hero/footer/pillars) needs to read well at 480px. Verify contrast on hub cards, pillar cards, directory cards.
+
+### Step 4 — Caveat from Bob
+Hex estimates were eye-read from ColorZilla swatch row, ±3-5 hex points. For perfect precision, run ColorZilla eyedropper on individual elements. Good enough for V1 alignment with parent brand.
+
+---
+
+## ⏳ Pass C — still queued
+
+- `.org` redirects (waiting on the two domain names from registrar). Cloudflare playbook saved in memory.
+- Cloudflare orange cloud for acanorthland.com — wait 24-48h after cert provisioning, then SSL/TLS = Full (strict), then flip records.
+
+## ⏳ Phase B — when content's ready
 
 - Real ACA member data → replace 579 Chamber-demo cards on `/directory`
-- Real Vivion content (address, photos, hours) — currently still "Opening Soon" skeleton
-- Real photos across the site (currently placeholder gradient cards on hub + Liberty)
+- Vivion real content (address, photos, hours) — currently "Opening Soon" skeleton
+- Real photos across the site (placeholder gradient cards on hub + Liberty)
 - Calendar embed on `/contact`
+- Hero image: ACA reception photo Tim mentioned but hasn't saved yet — when it's in `assets/hero/`, wire it into homepage hero with dark overlay
 
-### Inputs Tim still needs to provide
+## ⏳ Liberty/Vivion narrative cleanup (deferred from morning queue)
 
-- Vivion: real address, photos, opening date/hours
-- Castle Hall: activation date for the ACA Northland chapter (year they took over the hall)
-- Real ACA Business Club member list to replace Chamber demo data
-- Two `.org` redirect domain names
+The hub cards on index.html now reflect Vivion=established, Liberty=new chapter. BUT:
+- `liberty/index.html` hero lede still says "home of the ACA Business Club ever since" — implies club continuity from 1894 (false)
+- `vivion/index.html` still reads as "Opening Soon / Coming Soon" — should reflect established home status
+- Footer brand paragraph on liberty + vivion still says "Operating Castle Hall on Liberty Square since 1894" (continuity claim)
+
+When Pass D palette swap happens, also fix these narrative inconsistencies on the two location pages.
 
 ## Sites currently live
 
 - 🏥 https://koblerchiro.com — Kobler Chiropractic (WordPress)
-- 🏛️ https://1894.tours — Castle Hall venue site (HTTPS now clean)
-- 🏢 https://acanorthland.com — Regional parent brand + Directory + Liberty + Vivion + Contact (HTTPS clean)
+- 🏛️ https://1894.tours — Castle Hall venue site (HTTPS clean)
+- 🏢 https://acanorthland.com — Regional parent brand + Directory + Liberty + Vivion + Contact (HTTPS clean, ACA logo sitewide)
 
-## Commits this session
+## Recent commits
 
 ```
+2c935f7  Brand: add ACA logo to header + footer across all pages
+4175928  Hub H2: 'Two Northland Homes' -> 'Two Northland Locations'
+53bc854  Hero eyebrow tweak: 'Northland Chapter' -> 'Northland Chapter of the ACA'
+bda7084  Hero: cut to 30 words, align to corporate ACA brand voice
+aa7d8aa  Flip hub cards: Vivion is established, Liberty is the new chapter
+7888ee5  Homepage meta description: align with new narrative
+c8ea01c  Update MORNING.md
 4c8612c  Homepage strategic rewrite: ACA 1882 + Castle Hall 1894 convergence
 1e07164  Vivion: add 4 FB Reels + promote reel CSS to styles.css
 43bfeba  Liberty: add 3rd FB reel
 61b4019  Liberty: add Facebook Reels embed section
 e499846  Credibility sweep #1: Est. 1894 wording + crimson DEMO banner
-3cfd4b6  Re-add CNAME after DNS pointed
-34131d6  Remove CNAME for testing
 bc4b7ab  Compact mobile filter toolbar (horizontal scroll)
-d9738e2  Directory: add Gladstone Chamber (579 total) + multi-source generator
+d9738e2  Directory: add Gladstone Chamber (199) + multi-source generator
 8368433  Directory: populate with 380 Liberty Chamber + generator
 e3ef693  Initial scaffold — ACA Northland Phase A
 ```
