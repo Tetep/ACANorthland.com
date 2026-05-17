@@ -641,6 +641,40 @@ img { max-width: 100%; display: block; }
   border-radius: 8px;
 }
 
+/* Welcome slide (Slide 1) — uses sponsor-card chrome with logo + two addresses */
+.hero-slide-welcome .welcome-logo-bubble {
+  width: clamp(120px, 18vw, 200px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--aca-deep);
+  border: 3px solid var(--gold-bright);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+  padding: 18%;
+  justify-self: center;
+}
+.hero-slide-welcome .welcome-logo-bubble img {
+  width: 100%; height: auto; display: block;
+}
+.welcome-addresses {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 2.4vw, 28px);
+}
+.welcome-addr .sponsor-name {
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+  margin: 0 0 4px;
+}
+.welcome-addr-line {
+  font-size: clamp(0.85rem, 1.1vw, 0.98rem);
+  color: rgba(248,246,242,0.84);
+  line-height: 1.5;
+  margin: 0;
+}
+@media (max-width: 600px) {
+  .welcome-addresses { grid-template-columns: 1fr; gap: 12px; text-align: center; }
+}
+
 /* Mobile sponsor card stacking */
 @media (max-width: 768px) {
   .sponsor-card {
