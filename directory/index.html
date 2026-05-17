@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Member Directory | ACA Northland</title>
+    <meta name="description" content="Find and connect with members of the ACA Northland business club. A trust device for members — not a phonebook.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <header class="aca-header">
+      <div class="aca-header-inner">
+        <a class="aca-brand" href="../">
+          <span>
+            <strong>ACA Northland</strong>
+            <small>Business Club &middot; est. 1894</small>
+          </span>
+        </a>
+        <nav class="aca-nav">
+          <a href="../">Home</a>
+          <a href="../liberty/">Liberty</a>
+          <a href="../vivion/">Vivion</a>
+          <a href="./" class="active">Directory</a>
+          <a href="../contact.html">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="aca-hero sepia">
+        <div class="aca-hero-inner">
+          <span class="aca-eyebrow">Member Directory</span>
+          <h1>Members of the ACA Business Club</h1>
+          <p class="aca-lede">
+            A roster of small businesses, makers, and stewards across the Northland. Built so members
+            can find each other &mdash; not for the public phonebook.
+          </p>
+        </div>
+      </section>
+
+      <!-- ====== TOOLBAR (search + filter chips + A-Z) ====== -->
+      <div class="dir-toolbar">
+        <div class="dir-toolbar-inner">
+          <div class="dir-search-row">
+            <input class="dir-search" id="dirSearch" type="search" placeholder="Search by name, industry, or keyword&hellip;" autocomplete="off">
+            <span class="dir-chip-group-label">Available</span>
+            <button class="dir-chip" data-filter-availability="open">
+              <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3a7a4e;"></span>
+              Open to clients
+            </button>
+          </div>
+
+          <div class="dir-chips" data-filter-group="circle">
+            <span class="dir-chip-group-label">Circle</span>
+            <button class="dir-chip active" data-circle="all">All</button>
+            <button class="dir-chip" data-circle="hosts">Castle Hall Hosts</button>
+            <button class="dir-chip" data-circle="retail">Retail on the Square</button>
+            <button class="dir-chip" data-circle="services">Services &amp; Pros</button>
+            <button class="dir-chip" data-circle="makers">Makers</button>
+          </div>
+
+          <div class="dir-chips" data-filter-group="industry">
+            <span class="dir-chip-group-label">Industry</span>
+            <button class="dir-chip active" data-industry="all">All</button>
+            <button class="dir-chip" data-industry="food">Food &amp; Bev</button>
+            <button class="dir-chip" data-industry="retail">Retail</button>
+            <button class="dir-chip" data-industry="services">Services</button>
+            <button class="dir-chip" data-industry="creative">Creative</button>
+            <button class="dir-chip" data-industry="trades">Trades</button>
+          </div>
+
+          <div class="dir-az-bar" id="dirAzBar">
+            <!-- A-Z built by JS based on visible cards -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== CARD GRID ====== -->
+      <div class="dir-grid" id="dirGrid">
+
+        <!-- NOTE TO TIM/KELLY: 8 SAMPLE MEMBERS BELOW — placeholder names to demo the pattern.
+             Replace with real ACA Northland member data when ready. -->
+
+        <article class="dir-card" data-name="Greene Street Provisions" data-circle="hosts retail" data-industry="food" data-available="open">
+          <div class="dir-card-head">
+            <div class="dir-card-logo">G</div>
+            <div class="dir-card-headline">
+              <h3>Greene Street Provisions</h3>
+              <p class="dir-card-position">Small-batch catering &amp; charcuterie</p>
+            </div>
+            <span class="dir-availability" title="Open to clients"></span>
+          </div>
+          <p class="dir-card-bio">
+            Liberty Square catering since 2018 &mdash; runs the kitchen for Castle Hall events
+            and weekday lunch boxes for the downtown crowd.
+          </p>
+          <div class="dir-card-tags">
+            <span class="dir-tag circle">Castle Hall Hosts</span>
+            <span class="dir-tag">Catering</span>
+            <span class="dir-tag">Food &amp; Bev</span>
+          </div>
+          <div class="dir-card-foot">
+            <span class="dir-card-since">Member since 2018</span>
+            <a class="dir-card-cta" href="#">View profile &rarr;</a>
+          </div>
+        </article>
+
+        <article class="dir-card" data-name="Magnolia &amp; Co." data-circle="retail" data-industry="retail" data-available="open">
+          <div class="dir-card-head">
+            <div class="dir-card-logo">M</div>
+            <div class="dir-card-headline">
+              <h3>Magnolia &amp; Co.</h3>
+              <p class="dir-card-position">Boutique paper, gifts &amp; stationery</p>
+            </div>
+            <span class="dir-availability" title="Open to clients"></span>
+          </div>
+          <p class="dir-card-bio">
+            Stationery shop on the south side of Liberty Square &mdash; letterpress invitations,
+            heirloom gift wrap, and weekly card-making workshops.
+          </p>
+          <div class="dir-card-tags">
+            <span class="dir-tag circle">Retail on the Square</span>
+            <span class="dir-tag">Paper Goods</span>
+            <span class="dir-tag">Retail</span>
+          </div>
+          <div class="dir-card-foot">
+            <span class="dir-card-since">Member since 2021</span>
+            <a class="dir-card-cta" href="#">View profile &rarr;</a>
+          </div>
+        </article>
+
+        <article class="dir-card" data-name="Northbound Print Studio" data-circle="makers services" data-industry="creative" data-available="open">
+          <div class="dir-card-head">
+            <div class="dir-card-logo">N</div>
+            <div class="dir-card-headline">
+              <h3>Northbound Print Studio</h3>
+              <p class="dir-card-position">Letterpress, screenprint &amp; small-run print</p>
+            </div>
+            <span class="dir-availability" title="Open to clients"></span>
+          </div>
+          <p class="dir-card-bio">
+            A working print shop in the Northland &mdash; runs the posters, programs, and Castle
+            Hall event paper for the whole club. Apprentice studio open Saturdays.
+          </p>
+          <div class="dir-card-tags">
+            <span class="dir-tag circle">Makers</span>
+            <span class="dir-tag">Print</span>
+            <span class="dir-tag">Creative</span>
+          </div>
+          <div class="dir-card-foot">
+            <span class="dir-card-since">Member since 2019</span>
+            <a class="dir-card-cta" href="#">View profile &rarr;</a>
+          </div>
+        </article>
+
+        <article class="dir-card" data-name="Square Two Coffee" data-circle="hosts retail" data-industry="food" data-available="off">
+          <div class="dir-card-head">
+            <div class="dir-card-logo">S</div>
+            <div class="dir-card-headline">
+              <h3>Square Two Coffee</h3>
+              <p class="dir-card-position">Roastery &amp; cafe on Liberty Square</p>
+            </div>
+            <span class="dir-availability off" title="Booked / waitlist"></span>
+          </div>
+          <p class="dir-card-bio">
+            Single-origin roastery and cafe one block off the square &mdash; pours the morning
+            coffee at Castle Hall events and supplies beans to half the block.
+          </p>
+          <div class="dir-card-tags">
+            <span class="dir-tag circle">Castle Hall Hosts</span>
+            <span class="dir-tag">Cafe</span>
+            <span class="dir-tag">Food &amp; Bev</span>
+          </div>
+          <div class="dir-card-foot">
+            <span class="dir-card-since">Member since 2020</span>
+            <a class="dir-card-cta" href="#">View profile &rarr;</a>
+          </div>
+        </article>
+
+        <article class="dir-card" data-name="Threadwork Tailoring" data-circle="services" data-industry="services" data-available="open">
+          <div class="dir-card-head">
+            <div class="dir-card-logo">T</div>
+            <div class="dir-card-headline">
+              <h3>Threadwork Tailoring</h3>
+              <p class="dir-card-position">Bespoke tailoring &amp; alterations</p>
+            </div>
+            <span class="dir-availability" title="Open to clients"></span>
+          </div>
+          <p class="dir-card-bio">
+            Third-generation tailor on the square &mdash; suits, dresses, and wedding-party
+            alterations. Walk-in fittings Thursday through Saturday.
+          </p>
+          <div class="dir-card-tags">
+            <span class="dir-tag circle">Services &amp; Pros</span>
+            <span class="dir-tag">Tailoring</span>
+            <span class="dir-tag">Services</span>
+          </div>
+          <div class="dir-card-foot">
+            <span class="dir-card-since">Member since 2016</span>
+            <a class="dir-card-cta" href="#">View profile &rarr;</a>
+          </div>
+        </article>
+
+        <article class="dir-card" data-name="Cottonwood Counseling" data-circle="services" data-industry="services" data-available="open">
+          <div class="dir-card-head">
+            <div class="dir-card-logo">C</div>
+            <div class="dir-card-headline">
+              <h3>Cottonwood Counseling</h3>
+              <p class="dir-card-position">Family &amp; individual therapy practice</p>
+            </div>
+            <span class="dir-availability" title="Open to clients"></span>
+          </div>
+          <p class="dir-card-bio">
+            Solo and small-group counseling for Northland families &mdash; office two blocks off
+            the square, sliding scale for first responders and educators.
+          </p>
+          <div class="dir-card-tags">
+            <span class="dir-tag circle">Services &amp; Pros</span>
+            <span class="dir-tag">Counseling</span>
+            <span class="dir-tag">Services</span>
+          </div>
+          <div class="dir-card-foot">
+            <span class="dir-card-since">Member since 2022</span>
+            <a class="dir-card-cta" href="#">View profile &rarr;</a>
+          </div>
+        </article>
+
+        <article class="dir-card" data-name="Felts Hardware" data-circle="retail" data-industry="trades" data-available="off">
+          <div class="dir-card-head">
+            <div class="dir-card-logo">F</div>
+            <div class="dir-card-headline">
+              <h3>Felts Hardware</h3>
+              <p class="dir-card-position">Independent hardware &amp; trade supply</p>
+            </div>
+            <span class="dir-availability off" title="By appointment"></span>
+          </div>
+          <p class="dir-card-bio">
+            Liberty Square hardware store since the 1970s &mdash; trade-account program for local
+            contractors and key cutting/lock service while you wait.
+          </p>
+          <div class="dir-card-tags">
+            <span class="dir-tag circle">Retail on the Square</span>
+            <span class="dir-tag">Hardware</span>
+            <span class="dir-tag">Trades</span>
+          </div>
+          <div class="dir-card-foot">
+            <span class="dir-card-since">Member since 1996</span>
+            <a class="dir-card-cta" href="#">View profile &rarr;</a>
+          </div>
+        </article>
+
+        <article class="dir-card" data-name="The Liberty Reading Room" data-circle="hosts retail" data-industry="retail" data-available="open">
+          <div class="dir-card-head">
+            <div class="dir-card-logo">L</div>
+            <div class="dir-card-headline">
+              <h3>The Liberty Reading Room</h3>
+              <p class="dir-card-position">Independent bookshop &amp; event space</p>
+            </div>
+            <span class="dir-availability" title="Open to clients"></span>
+          </div>
+          <p class="dir-card-bio">
+            Independent bookshop on the north side of the square &mdash; hosts the monthly Castle
+            Hall reading series and the kids' Saturday story hour.
+          </p>
+          <div class="dir-card-tags">
+            <span class="dir-tag circle">Castle Hall Hosts</span>
+            <span class="dir-tag">Books</span>
+            <span class="dir-tag">Retail</span>
+          </div>
+          <div class="dir-card-foot">
+            <span class="dir-card-since">Member since 2017</span>
+            <a class="dir-card-cta" href="#">View profile &rarr;</a>
+          </div>
+        </article>
+
+      </div>
+
+      <section class="aca-info-strip">
+        <h2>Not a member yet?</h2>
+        <p>Membership in the ACA Business Club is by introduction. If you run a small business
+        in the Northland and you've been thinking about joining, reach out.</p>
+        <p style="margin-top:24px;"><a class="aca-btn aca-btn-gold" href="../contact.html">Inquire About Membership</a></p>
+      </section>
+    </main>
+
+    <footer class="aca-footer">
+      <div class="aca-footer-inner">
+        <div class="aca-footer-brand">
+          <strong>ACA Northland</strong>
+          <p>The regional business club for the Northland &mdash; Liberty, Gladstone, and the Kansas City Northland. Operating Castle Hall on Liberty Square since 1894.</p>
+        </div>
+        <div>
+          <h3>Locations</h3>
+          <a href="../liberty/">Liberty &mdash; Castle Hall</a>
+          <a href="../vivion/">Vivion</a>
+        </div>
+        <div>
+          <h3>The Club</h3>
+          <a href="./">Member Directory</a>
+          <a href="../contact.html">Contact &amp; Membership</a>
+          <a href="https://1894.tours" rel="noopener">1894.tours &mdash; Castle Hall</a>
+        </div>
+      </div>
+      <div class="aca-footer-bottom">
+        &copy; ACA Northland Business Club &middot; Liberty Square &middot; Est. 1894
+      </div>
+    </footer>
+
+    <script>
+      (function() {
+        var grid = document.getElementById('dirGrid');
+        var cards = Array.from(grid.querySelectorAll('.dir-card'));
+        var searchInput = document.getElementById('dirSearch');
+        var azBar = document.getElementById('dirAzBar');
+        var state = { search: '', circle: 'all', industry: 'all', availability: false };
+
+        // Build A-Z bar from member names
+        var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+        var present = new Set();
+        cards.forEach(function(c) {
+          var n = (c.dataset.name || '').trim().replace(/^The\\s+/i, '');
+          if (n) present.add(n.charAt(0).toUpperCase());
+        });
+        letters.forEach(function(L) {
+          var a = document.createElement('a');
+          a.textContent = L;
+          a.href = '#' + L;
+          a.dataset.letter = L;
+          if (!present.has(L)) a.classList.add('disabled');
+          a.addEventListener('click', function(e) {
+            e.preventDefault();
+            var match = cards.find(function(c) {
+              var n = (c.dataset.name || '').trim().replace(/^The\\s+/i, '');
+              return n && n.charAt(0).toUpperCase() === L && c.style.display !== 'none';
+            });
+            if (match) match.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          });
+          azBar.appendChild(a);
+        });
+
+        // Filter chip handling — each group is single-select
+        function bindGroup(groupName, attr, key) {
+          var chips = document.querySelectorAll('[data-filter-group="' + groupName + '"] .dir-chip');
+          chips.forEach(function(chip) {
+            chip.addEventListener('click', function() {
+              chips.forEach(function(c) { c.classList.remove('active'); });
+              chip.classList.add('active');
+              state[key] = chip.dataset[attr];
+              applyFilters();
+            });
+          });
+        }
+        bindGroup('circle', 'circle', 'circle');
+        bindGroup('industry', 'industry', 'industry');
+
+        // Availability toggle
+        var availBtn = document.querySelector('[data-filter-availability]');
+        availBtn.addEventListener('click', function() {
+          state.availability = !state.availability;
+          availBtn.classList.toggle('active', state.availability);
+          applyFilters();
+        });
+
+        // Search
+        searchInput.addEventListener('input', function(e) {
+          state.search = e.target.value.toLowerCase().trim();
+          applyFilters();
+        });
+
+        function applyFilters() {
+          var anyVisible = false;
+          cards.forEach(function(c) {
+            var matchCircle = state.circle === 'all' || (c.dataset.circle || '').split(' ').indexOf(state.circle) !== -1;
+            var matchIndustry = state.industry === 'all' || c.dataset.industry === state.industry;
+            var matchAvail = !state.availability || c.dataset.available === 'open';
+            var matchSearch = !state.search || c.textContent.toLowerCase().indexOf(state.search) !== -1;
+            var show = matchCircle && matchIndustry && matchAvail && matchSearch;
+            c.style.display = show ? '' : 'none';
+            if (show) anyVisible = true;
+          });
+
+          // Empty state
+          var existing = grid.querySelector('.dir-empty');
+          if (existing) existing.remove();
+          if (!anyVisible) {
+            var empty = document.createElement('p');
+            empty.className = 'dir-empty';
+            empty.textContent = 'No members match those filters. Try clearing one.';
+            grid.appendChild(empty);
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>
