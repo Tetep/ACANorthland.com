@@ -154,6 +154,58 @@ img { max-width: 100%; display: block; }
 .aca-hero.sepia .aca-btn-outline { color: var(--paper); border-color: rgba(246,243,238,0.5); }
 .aca-hero.sepia .aca-btn-outline:hover { background: rgba(246,243,238,0.1); border-color: var(--gold-bright); color: var(--gold-bright); }
 
+/* Hero variant with background image (homepage) */
+.aca-hero.has-bg-image {
+  background:
+    linear-gradient(135deg, rgba(15,26,23,0.55) 0%, rgba(29,47,44,0.62) 45%, rgba(15,26,23,0.78) 100%),
+    url('assets/hero/aca-reception.jpg') center 35% / cover no-repeat;
+  color: var(--paper);
+  min-height: 78vh;
+  border-bottom: 0;
+}
+.aca-hero.has-bg-image::before {
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 25% 15%, rgba(184,154,75,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 90%, rgba(15,26,23,0.45) 0%, transparent 60%);
+  pointer-events: none;
+}
+.aca-hero.has-bg-image .aca-hero-inner { position: relative; z-index: 2; }
+.aca-hero.has-bg-image h1 {
+  color: #fff;
+  text-shadow: 0 3px 18px rgba(0,0,0,0.55), 0 1px 4px rgba(0,0,0,0.45);
+}
+.aca-hero.has-bg-image .aca-lede {
+  color: rgba(244,236,216,0.96);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+.aca-hero.has-bg-image .aca-eyebrow {
+  background: rgba(196,140,55,0.28);
+  color: var(--gold-bright);
+  border-color: rgba(232,198,112,0.55);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.35);
+}
+.aca-hero.has-bg-image .aca-btn-gold {
+  box-shadow: 0 6px 28px rgba(196,140,55,0.5);
+}
+.aca-hero.has-bg-image .aca-btn-outline {
+  color: #fff;
+  border-color: rgba(255,255,255,0.55);
+  backdrop-filter: blur(2px);
+}
+.aca-hero.has-bg-image .aca-btn-outline:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: var(--gold-bright);
+  color: var(--gold-bright);
+}
+@media (max-width: 768px) {
+  .aca-hero.has-bg-image { min-height: 60vh; background-position: center 30%; }
+}
+@media (max-width: 480px) {
+  .aca-hero.has-bg-image { min-height: 55vh; background-position: 60% 25%; }
+  .aca-hero.has-bg-image h1 { font-size: 1.85rem; }
+}
+
 /* ---------- SECTIONS ---------- */
 .aca-section {
   padding: 80px clamp(18px, 5vw, 48px);
