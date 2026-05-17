@@ -336,6 +336,23 @@ img { max-width: 100%; display: block; }
   font-size: 12px; color: var(--muted); text-align: center;
 }
 
+/* ---------- REELS (social embed grid, used on Liberty + Vivion) ---------- */
+.reels-grid {
+  display: flex; flex-wrap: wrap; gap: 28px;
+  justify-content: center; align-items: flex-start;
+  margin-top: 24px;
+}
+.reel-frame {
+  width: 267px; height: 476px;
+  border-radius: 14px; overflow: hidden;
+  background: var(--ink);
+  box-shadow: 0 8px 24px rgba(29,24,18,0.18);
+}
+.reel-frame iframe { display: block; }
+@media (max-width: 600px) {
+  .reels-grid { gap: 18px; }
+}
+
 /* ============================================================
    RESPONSIVE
    ============================================================ */
