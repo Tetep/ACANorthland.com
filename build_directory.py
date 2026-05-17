@@ -333,8 +333,7 @@ def build():
   <body>
     <header class="aca-header">
       <div class="aca-header-inner">
-        <a class="aca-brand" href="../">
-          <span>
+        <a class="aca-brand" href="../"><img class="aca-brand-logo" src="assets/logos/aca-white.png" alt="ACA Business Club"><span>
             <strong>ACA Northland</strong>
             <small>Business Club &middot; At Castle Hall, 1894</small>
           </span>
@@ -405,8 +404,7 @@ def build():
 
     <footer class="aca-footer">
       <div class="aca-footer-inner">
-        <div class="aca-footer-brand">
-          <strong>ACA Northland</strong>
+        <div class="aca-footer-brand"><img class="aca-footer-logo" src="assets/logos/aca-white.png" alt="ACA Business Club"><strong>ACA Northland</strong>
           <p>The regional business club for the Northland &mdash; Liberty, Gladstone, and the Kansas City Northland. Operating Castle Hall on Liberty Square since 1894.</p>
         </div>
         <div>

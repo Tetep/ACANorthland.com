@@ -59,8 +59,12 @@ img { max-width: 100%; display: block; }
   flex-wrap: wrap;
 }
 .aca-brand {
-  display: flex; align-items: center; gap: 12px;
+  display: flex; align-items: center; gap: 14px;
   color: var(--paper); text-decoration: none;
+}
+.aca-brand-logo {
+  height: 42px; width: auto;
+  display: block; flex-shrink: 0;
 }
 .aca-brand strong {
   font-family: "Playfair Display", Georgia, serif;
@@ -69,6 +73,14 @@ img { max-width: 100%; display: block; }
 .aca-brand small {
   display: block; color: var(--gold-bright);
   font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+}
+.aca-footer-logo {
+  height: 56px; width: auto;
+  display: block; margin-bottom: 14px;
+}
+@media (max-width: 480px) {
+  .aca-brand-logo { height: 36px; }
+  .aca-footer-logo { height: 48px; }
 }
 .aca-nav { display: flex; gap: 22px; flex-wrap: wrap; }
 .aca-nav a {
