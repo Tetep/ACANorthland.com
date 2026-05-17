@@ -222,7 +222,7 @@ img { max-width: 100%; display: block; }
 .aca-hero.has-bg-image {
   background:
     linear-gradient(135deg, rgba(15,26,23,0.55) 0%, rgba(29,47,44,0.62) 45%, rgba(15,26,23,0.78) 100%),
-    url('assets/hero/aca-reception.jpg') center 35% / cover no-repeat;
+    url('/assets/hero/aca-reception.jpg') center 35% / cover no-repeat;
   color: var(--paper);
   min-height: 78vh;
   border-bottom: 0;
