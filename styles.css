@@ -603,6 +603,83 @@ img { max-width: 100%; display: block; }
   .location-info { padding: 22px; }
 }
 
+/* ---------- REVIEWS SECTION (Liberty + Vivion) ---------- */
+.reviews-section { text-align: center; }
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  text-align: left;
+  margin-top: 28px;
+  align-items: stretch;
+}
+.review-card {
+  background: #fff;
+  border: 1px solid var(--border-soft);
+  border-radius: 16px;
+  padding: 22px 22px 18px;
+  box-shadow: var(--shadow-sm);
+  display: flex; flex-direction: column; gap: 14px;
+  transition: all 0.25s;
+}
+.review-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--gold);
+}
+.review-stars {
+  color: var(--gold);
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+.review-body {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0;
+  flex: 1;
+}
+.review-meta {
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid var(--border-soft);
+  padding-top: 12px;
+  gap: 8px;
+}
+.review-author {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 13.5px;
+}
+.review-date {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+.reviews-source {
+  margin-top: 28px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.reviews-source a {
+  color: var(--gold-deep);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+.reviews-source a:hover { border-bottom-color: var(--gold-deep); }
+@media (max-width: 480px) {
+  .review-card { padding: 18px; }
+  .review-body { font-size: 13.5px; }
+}
+
 /* ---------- REELS (social embed grid, used on Liberty + Vivion) ---------- */
 .reels-grid {
   display: flex; flex-wrap: wrap; gap: 28px;
