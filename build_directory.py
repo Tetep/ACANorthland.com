@@ -1,27 +1,36 @@
-"""Generate directory/index.html from liberty-chamber-directory.csv.
+"""Generate directory/index.html from multiple chamber CSVs.
 
-Each run rebuilds the directory page from the CSV. Idempotent. Re-run any
-time the CSV updates.
+Sources (add new sources by adding to SOURCES list):
+- Liberty Chamber  — schema: Letter, Name, Phone, Address, Website, Category, DetailURL, Tags
+- Gladstone Chamber — schema: Letter, Name, Address, Phone, Fax, Category, Contacts, MemberSince, Description, Tags
 
-Mapping:
-- 187 raw categories -> 8 broad industry chips (food, finance, health, pro,
-  retail, trades, entertainment, community)
-- City extracted from Address column for a CITY filter (replaces ACA-specific
-  Circle chips since Chamber data has no circles)
-- Availability dot OMITTED (no real data for it; not fabricating)
-- "Member since" OMITTED (not in CSV; not fabricating)
-- Per-card content: address, phone, website, category chip, industry chip,
-  and a 'View Chamber listing' link to the DetailURL
+Each row is normalized to a common Member record. Cards show ONLY the fields
+the source actually provides — no fabrication. Gladstone has richer data
+(descriptions + member-since), Liberty has links to its Chamber detail page.
+
+Idempotent. Re-run any time the CSV(s) update:  python build_directory.py
 """
 import csv
 import os
 import re
 import html
+from collections import Counter
 
-CSV_PATH = r"C:\Users\tpete\liberty-chamber-directory.csv"
 OUT_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "directory", "index.html")
 
-# Industry buckets — substring match, case-insensitive, first match wins
+SOURCES = [
+    {
+        "key":   "liberty",
+        "label": "Liberty Chamber",
+        "path":  r"C:\Users\tpete\liberty-chamber-directory.csv",
+    },
+    {
+        "key":   "gladstone",
+        "label": "Gladstone Chamber",
+        "path":  r"C:\Users\tpete\gladstone-chamber-directory.csv",
+    },
+]
+
 INDUSTRY_BUCKETS = [
     ("food",          "Food & Beverage",
      ["restaurant", "bakery", "cafe", "coffee", "brewery", "catering", "food", "ice cream", "deli", "winery", "bar & grill", "pub", "tavern", "dining"]),
@@ -38,7 +47,7 @@ INDUSTRY_BUCKETS = [
     ("entertainment", "Entertainment & Hospitality",
      ["entertainment", "hotel", "motel", "lodg", "event", "wedding", "venue", "music", "theatr", "recreation", "fitness center", "country club", "golf", "martial arts"]),
     ("community",     "Community & Non-Profit",
-     ["non-profit", "nonprofit", "church", "ministry", "community", "education", "school", "library", "museum", "chamber", "foundation", "association", "senior living", "child care", "preschool"]),
+     ["non-profit", "nonprofit", "church", "ministry", "community", "education", "school", "library", "museum", "chamber", "foundation", "association", "senior living", "child care", "preschool", "civic"]),
 ]
 
 
@@ -66,9 +75,7 @@ def extract_city(addr):
     if not addr:
         return ""
     m = CITY_RE.search(addr)
-    if m:
-        return m.group(1).strip()
-    return ""
+    return m.group(1).strip() if m else ""
 
 
 def city_slug(city):
@@ -91,96 +98,178 @@ def first_letter(name):
     return (n[:1] or "?").upper()
 
 
-def render_card(row):
-    name = row["Name"].strip()
-    cat = row["Category"].strip()
-    phone = row["Phone"].strip()
-    addr = row["Address"].strip()
-    web = normalize_url(row["Website"])
-    detail = normalize_url(row["DetailURL"])
-    letter = first_letter(name)
-    ind = industry_bucket(cat)
+def truncate(text, max_chars=180):
+    if not text:
+        return ""
+    text = text.strip()
+    if len(text) <= max_chars:
+        return text
+    # cut at word boundary
+    cut = text[:max_chars].rsplit(" ", 1)[0]
+    return cut.rstrip(",.;:") + "…"
+
+
+def first_contact(contacts):
+    """Gladstone 'Contacts' field is 'Name, Title; Name, Title' — return first name only, no title."""
+    if not contacts:
+        return ""
+    first = contacts.split(";")[0].strip()
+    name = first.split(",")[0].strip()
+    return name
+
+
+def load_source(src):
+    """Read CSV and normalize to common Member records."""
+    members = []
+    with open(src["path"], "r", encoding="utf-8-sig") as f:
+        for row in csv.DictReader(f):
+            name = (row.get("Name") or "").strip()
+            if not name:
+                continue
+            members.append({
+                "source_key":   src["key"],
+                "source_label": src["label"],
+                "name":         name,
+                "category":     (row.get("Category") or "").strip(),
+                "address":      (row.get("Address") or "").strip(),
+                "phone":        (row.get("Phone") or "").strip(),
+                "website":      normalize_url(row.get("Website")),
+                "detail_url":   normalize_url(row.get("DetailURL")),
+                "contact":      first_contact(row.get("Contacts") or ""),
+                "member_since": (row.get("MemberSince") or "").strip(),
+                "description":  (row.get("Description") or "").strip(),
+            })
+    return members
+
+
+def render_card(m):
+    letter = first_letter(m["name"])
+    ind = industry_bucket(m["category"])
     ind_label = industry_label(ind)
-    city = extract_city(addr)
+    city = extract_city(m["address"])
     city_s = city_slug(city)
 
-    # Build address-row HTML (skip empty bits, never invent)
+    # Contact row: phone + website (skip empty)
     contact_bits = []
-    if phone:
-        contact_bits.append(f'<a href="tel:{phone}">{html.escape(phone)}</a>')
-    if web:
-        domain = re.sub(r"^https?://(www\.)?", "", web).rstrip("/")
-        contact_bits.append(f'<a href="{html.escape(web)}" target="_blank" rel="noopener">{html.escape(domain)}</a>')
+    if m["phone"]:
+        contact_bits.append(f'<a href="tel:{m["phone"]}">{html.escape(m["phone"])}</a>')
+    if m["website"]:
+        domain = re.sub(r"^https?://(www\.)?", "", m["website"]).rstrip("/")
+        contact_bits.append(f'<a href="{html.escape(m["website"])}" target="_blank" rel="noopener">{html.escape(domain)}</a>')
     contact_row = " &middot; ".join(contact_bits) if contact_bits else "<em>No contact listed</em>"
 
     addr_html = (
-        f'<p class="dir-card-addr">{html.escape(addr)}</p>' if addr
+        f'<p class="dir-card-addr">{html.escape(m["address"])}</p>' if m["address"]
         else '<p class="dir-card-addr"><em>No address listed</em></p>'
     )
 
-    cta = (
-        f'<a class="dir-card-cta" href="{html.escape(detail)}" target="_blank" rel="noopener">View Chamber listing &rarr;</a>'
-        if detail else
-        '<span class="dir-card-cta" style="opacity:0.5;border-bottom-color:transparent;">No listing URL</span>'
+    # Description block (Gladstone has it; Liberty doesn't)
+    desc_html = (
+        f'<p class="dir-card-bio">{html.escape(truncate(m["description"], 220))}</p>'
+        if m["description"] else ""
     )
 
-    return f'''        <article class="dir-card" data-name="{html.escape(name)}" data-letter="{letter}" data-industry="{ind}" data-city="{city_s}">
+    # Contact person line (Gladstone)
+    person_html = (
+        f'<p class="dir-card-person">{html.escape(m["contact"])}</p>'
+        if m["contact"] else ""
+    )
+
+    # Member since (Gladstone)
+    since_text = (
+        f'Member since {html.escape(m["member_since"])} &middot; {html.escape(m["source_label"])}'
+        if m["member_since"]
+        else html.escape(m["source_label"])
+    )
+
+    # CTA: detail URL if available (Liberty), otherwise just source label
+    cta = (
+        f'<a class="dir-card-cta" href="{html.escape(m["detail_url"])}" target="_blank" rel="noopener">View Chamber listing &rarr;</a>'
+        if m["detail_url"] else
+        '<span class="dir-card-cta" style="opacity:0.5;border-bottom-color:transparent;">—</span>'
+    )
+
+    tags = []
+    if ind != "other":
+        tags.append(f'<span class="dir-tag circle">{html.escape(ind_label)}</span>')
+    if m["category"]:
+        tags.append(f'<span class="dir-tag">{html.escape(m["category"])}</span>')
+    if city:
+        tags.append(f'<span class="dir-tag">{html.escape(city)}</span>')
+    tags_html = "\n            ".join(tags)
+
+    return f'''        <article class="dir-card" data-name="{html.escape(m["name"])}" data-letter="{letter}" data-industry="{ind}" data-city="{city_s}" data-source="{m["source_key"]}">
           <div class="dir-card-head">
             <div class="dir-card-logo">{letter}</div>
             <div class="dir-card-headline">
-              <h3>{html.escape(name)}</h3>
-              <p class="dir-card-position">{html.escape(cat) if cat else "<em>Uncategorized</em>"}</p>
+              <h3>{html.escape(m["name"])}</h3>
+              <p class="dir-card-position">{html.escape(m["category"]) if m["category"] else "<em>Uncategorized</em>"}</p>
+              {person_html}
             </div>
           </div>
+          {desc_html}
           <div class="dir-card-meta">
             {addr_html}
             <p class="dir-card-contact">{contact_row}</p>
           </div>
           <div class="dir-card-tags">
-            {f'<span class="dir-tag circle">{html.escape(ind_label)}</span>' if ind != "other" else ''}
-            {f'<span class="dir-tag">{html.escape(cat)}</span>' if cat else ''}
-            {f'<span class="dir-tag">{html.escape(city)}</span>' if city else ''}
+            {tags_html}
           </div>
           <div class="dir-card-foot">
-            <span class="dir-card-since">Liberty Chamber listing</span>
+            <span class="dir-card-since">{since_text}</span>
             {cta}
           </div>
         </article>'''
 
 
-def render_industry_chips():
-    chips = ['<button class="dir-chip active" data-industry="all">All Industries</button>']
-    for slug, label, _ in INDUSTRY_BUCKETS:
-        chips.append(f'<button class="dir-chip" data-industry="{slug}">{html.escape(label)}</button>')
-    chips.append('<button class="dir-chip" data-industry="other">Other</button>')
-    return "\n            ".join(chips)
-
-
-def render_city_chips(cities):
-    chips = ['<button class="dir-chip active" data-city="all">All Cities</button>']
-    # cities is a list of (city, count) sorted desc by count, top N
-    for city, count in cities:
-        slug = city_slug(city)
-        chips.append(f'<button class="dir-chip" data-city="{html.escape(slug)}">{html.escape(city)} <span style="opacity:0.6;">({count})</span></button>')
+def render_chips(group_label, attr, options, include_all=True, all_label="All"):
+    """options is list of (slug, label, count_or_None) tuples."""
+    chips = []
+    if include_all:
+        chips.append(f'<button class="dir-chip active" data-{attr}="all">{html.escape(all_label)}</button>')
+    for slug, label, count in options:
+        cnt = f' <span style="opacity:0.6;">({count})</span>' if count is not None else ""
+        chips.append(f'<button class="dir-chip" data-{attr}="{html.escape(slug)}">{html.escape(label)}{cnt}</button>')
     return "\n            ".join(chips)
 
 
 def build():
-    with open(CSV_PATH, "r", encoding="utf-8-sig") as f:
-        rows = list(csv.DictReader(f))
+    all_members = []
+    counts_by_source = {}
+    for src in SOURCES:
+        ms = load_source(src)
+        counts_by_source[src["label"]] = len(ms)
+        all_members.extend(ms)
 
-    # Sort by name for stable A-Z
-    rows.sort(key=lambda r: r["Name"].strip().lower())
+    total = len(all_members)
+    # Sort by name for stable A-Z (strip leading "The/A/An")
+    all_members.sort(key=lambda m: re.sub(r"^(the|a|an)\s+", "", m["name"].strip().lower()))
 
-    # Compute city distribution -> top 8 chips
-    from collections import Counter
-    city_counts = Counter(extract_city(r["Address"]) for r in rows)
-    city_counts.pop("", None)
-    top_cities = city_counts.most_common(8)
+    # Distributions
+    industries = Counter(industry_bucket(m["category"]) for m in all_members)
+    cities = Counter(extract_city(m["address"]) for m in all_members if extract_city(m["address"]))
 
-    cards_html = "\n\n".join(render_card(r) for r in rows)
-    industry_chips = render_industry_chips()
-    city_chips = render_city_chips(top_cities)
+    # Chip option lists
+    industry_options = []
+    for slug, label, _ in INDUSTRY_BUCKETS:
+        c = industries.get(slug, 0)
+        if c > 0:
+            industry_options.append((slug, label, c))
+    if industries.get("other", 0) > 0:
+        industry_options.append(("other", "Other", industries["other"]))
+
+    top_cities = cities.most_common(10)
+    city_options = [(city_slug(c), c, n) for c, n in top_cities]
+
+    source_options = [(src["key"], src["label"], counts_by_source[src["label"]]) for src in SOURCES]
+
+    cards_html = "\n\n".join(render_card(m) for m in all_members)
+    industry_chips = render_chips("Industry", "industry", industry_options, all_label="All Industries")
+    city_chips = render_chips("City", "city", city_options, all_label="All Cities")
+    source_chips = render_chips("Source", "source", source_options, all_label="All Sources")
+
+    # Demo banner: which sources, total count
+    source_breakdown = " + ".join(f"{src['label']} ({counts_by_source[src['label']]})" for src in SOURCES)
 
     page = f'''<!doctype html>
 <html lang="en">
@@ -217,6 +306,17 @@ def build():
         border-bottom: 1px dotted var(--border);
       }}
       .dir-card-contact a:hover {{ color: var(--gold); border-bottom-color: var(--gold); }}
+      .dir-card-person {{
+        font-size: 11px; color: var(--gold); margin: 4px 0 0;
+        font-weight: 600; letter-spacing: 0.02em;
+      }}
+      .dir-card-bio {{
+        font-size: 12.5px; line-height: 1.5;
+        color: var(--ink-soft);
+        margin: 0 0 12px;
+        font-family: "Playfair Display", Georgia, serif;
+        font-style: italic;
+      }}
       .dir-count {{
         font-size: 13px; color: var(--muted);
         padding: 12px clamp(18px, 5vw, 48px) 0;
@@ -246,7 +346,7 @@ def build():
 
     <main>
       <div class="demo-banner">
-        <strong>Demo data:</strong> populated with {len(rows)} businesses scraped from the Liberty Chamber of Commerce directory for design review. <strong>These are NOT ACA Business Club members.</strong> Real ACA member data replaces this for launch.
+        <strong>Demo data:</strong> populated with {total} businesses scraped from {source_breakdown} for design review. <strong>These are NOT ACA Business Club members.</strong> Real ACA member data replaces this for launch.
       </div>
 
       <section class="aca-hero sepia">
@@ -263,7 +363,12 @@ def build():
       <div class="dir-toolbar">
         <div class="dir-toolbar-inner">
           <div class="dir-search-row">
-            <input class="dir-search" id="dirSearch" type="search" placeholder="Search by name, category, or keyword&hellip;" autocomplete="off">
+            <input class="dir-search" id="dirSearch" type="search" placeholder="Search by name, category, contact, or keyword&hellip;" autocomplete="off">
+          </div>
+
+          <div class="dir-chips" data-filter-group="source">
+            <span class="dir-chip-group-label">Source</span>
+            {source_chips}
           </div>
 
           <div class="dir-chips" data-filter-group="industry">
@@ -280,7 +385,7 @@ def build():
         </div>
       </div>
 
-      <p class="dir-count"><strong id="dirCount">{len(rows)}</strong> of <strong>{len(rows)}</strong> businesses</p>
+      <p class="dir-count"><strong id="dirCount">{total}</strong> of <strong>{total}</strong> businesses</p>
 
       <div class="dir-grid" id="dirGrid">
 {cards_html}
@@ -323,9 +428,8 @@ def build():
         var searchInput = document.getElementById('dirSearch');
         var azBar = document.getElementById('dirAzBar');
         var countEl = document.getElementById('dirCount');
-        var state = {{ search: '', industry: 'all', city: 'all' }};
+        var state = {{ search: '', industry: 'all', city: 'all', source: 'all' }};
 
-        // Build A-Z bar from member letters
         var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
         var present = new Set();
         cards.forEach(function(c) {{ if (c.dataset.letter) present.add(c.dataset.letter); }});
@@ -358,6 +462,7 @@ def build():
         }}
         bindGroup('industry', 'industry', 'industry');
         bindGroup('city', 'city', 'city');
+        bindGroup('source', 'source', 'source');
 
         searchInput.addEventListener('input', function(e) {{
           state.search = e.target.value.toLowerCase().trim();
@@ -369,8 +474,9 @@ def build():
           cards.forEach(function(c) {{
             var matchIndustry = state.industry === 'all' || c.dataset.industry === state.industry;
             var matchCity = state.city === 'all' || c.dataset.city === state.city;
+            var matchSource = state.source === 'all' || c.dataset.source === state.source;
             var matchSearch = !state.search || c.textContent.toLowerCase().indexOf(state.search) !== -1;
-            var show = matchIndustry && matchCity && matchSearch;
+            var show = matchIndustry && matchCity && matchSource && matchSearch;
             c.style.display = show ? '' : 'none';
             if (show) visible++;
           }});
@@ -393,17 +499,17 @@ def build():
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         f.write(page)
 
-    # Stats
-    from collections import Counter
-    industries = Counter(industry_bucket(r["Category"]) for r in rows)
-    cities = Counter(extract_city(r["Address"]) for r in rows if extract_city(r["Address"]))
     print(f"Wrote {OUT_PATH}")
-    print(f"  {len(rows)} cards rendered")
+    print(f"  Total members: {total}")
+    for src in SOURCES:
+        print(f"    {src['label']:<22} {counts_by_source[src['label']]:>4}")
     print(f"  Industry distribution:")
-    for slug, _, _ in INDUSTRY_BUCKETS:
-        print(f"    {slug:<14} {industries.get(slug,0):>4}")
-    print(f"    {'other':<14} {industries.get('other',0):>4}")
-    print(f"  Top cities: {cities.most_common(8)}")
+    for slug, label, _ in INDUSTRY_BUCKETS:
+        if industries.get(slug):
+            print(f"    {slug:<14} {industries[slug]:>4}  ({label})")
+    if industries.get("other"):
+        print(f"    {'other':<14} {industries['other']:>4}")
+    print(f"  Top cities: {top_cities}")
 
 
 if __name__ == "__main__":
