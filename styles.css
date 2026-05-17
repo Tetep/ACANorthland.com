@@ -154,6 +154,70 @@ img { max-width: 100%; display: block; }
 .aca-hero.sepia .aca-btn-outline { color: var(--paper); border-color: rgba(246,243,238,0.5); }
 .aca-hero.sepia .aca-btn-outline:hover { background: rgba(246,243,238,0.1); border-color: var(--gold-bright); color: var(--gold-bright); }
 
+/* Hero variant with YouTube video background (Liberty page) */
+.aca-hero.has-video-bg {
+  position: relative;
+  overflow: hidden;
+  color: var(--paper);
+  min-height: 78vh;
+  background: var(--ink);
+  border-bottom: 0;
+}
+.aca-hero-video {
+  position: absolute; inset: 0; z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.aca-hero-video iframe {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 100vw;
+  height: 56.25vw;     /* 16:9 of viewport width */
+  min-height: 100%;
+  min-width: 177.78vh; /* 16:9 of viewport height — covers tall viewports */
+  transform: translate(-50%, -50%);
+  border: 0;
+  pointer-events: none;
+}
+.aca-hero.has-video-bg::before {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(135deg, rgba(15,26,23,0.65) 0%, rgba(29,47,44,0.55) 50%, rgba(15,26,23,0.78) 100%);
+  pointer-events: none;
+}
+.aca-hero.has-video-bg .aca-hero-inner { position: relative; z-index: 2; }
+.aca-hero.has-video-bg h1 {
+  color: #fff;
+  text-shadow: 0 3px 18px rgba(0,0,0,0.55), 0 1px 4px rgba(0,0,0,0.45);
+}
+.aca-hero.has-video-bg .aca-lede {
+  color: rgba(244,236,216,0.96);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+.aca-hero.has-video-bg .aca-eyebrow {
+  background: rgba(196,140,55,0.28);
+  color: var(--gold-bright);
+  border-color: rgba(232,198,112,0.55);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.35);
+}
+.aca-hero.has-video-bg .aca-btn-gold { box-shadow: 0 6px 28px rgba(196,140,55,0.5); }
+.aca-hero.has-video-bg .aca-btn-outline {
+  color: #fff;
+  border-color: rgba(255,255,255,0.55);
+  backdrop-filter: blur(2px);
+}
+.aca-hero.has-video-bg .aca-btn-outline:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: var(--gold-bright);
+  color: var(--gold-bright);
+}
+@media (max-width: 768px) {
+  .aca-hero.has-video-bg { min-height: 60vh; }
+}
+@media (max-width: 480px) {
+  .aca-hero.has-video-bg { min-height: 55vh; }
+  .aca-hero.has-video-bg h1 { font-size: 1.85rem; }
+}
+
 /* Hero variant with background image (homepage) */
 .aca-hero.has-bg-image {
   background:
