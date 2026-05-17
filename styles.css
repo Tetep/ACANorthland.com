@@ -290,6 +290,79 @@ img { max-width: 100%; display: block; }
   .aca-hero.has-bg-image h1 { font-size: 1.85rem; }
 }
 
+/* ---------- DIRECTORY HERO (photo bg + yellow address bubbles) ---------- */
+.aca-hero.aca-hero-directory {
+  position: relative;
+  min-height: 60vh;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  padding: 80px clamp(18px, 5vw, 48px) 140px;
+  background:
+    linear-gradient(135deg, rgba(15,26,23,0.55) 0%, rgba(29,47,44,0.55) 50%, rgba(15,26,23,0.78) 100%),
+    url('/assets/hero/aca-reception.jpg') center 30% / cover no-repeat;
+  color: var(--paper-on-dark);
+  border-bottom: 0;
+  overflow: hidden;
+}
+.aca-hero-directory .aca-hero-inner {
+  position: relative; z-index: 2;
+  max-width: 880px; margin: 0 auto;
+}
+.aca-hero-directory h1 {
+  color: #fff;
+  text-shadow: 0 3px 18px rgba(0,0,0,0.55), 0 1px 4px rgba(0,0,0,0.45);
+}
+.aca-hero-directory .aca-lede {
+  color: rgba(244,236,216,0.96);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+.aca-hero-directory .aca-eyebrow {
+  background: rgba(184,154,75,0.28);
+  color: var(--gold-bright);
+  border-color: rgba(212,179,106,0.55);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.35);
+}
+.dir-hero-addresses {
+  position: absolute;
+  bottom: 28px; left: 0; right: 0;
+  display: flex; justify-content: space-between;
+  padding: 0 clamp(18px, 5vw, 80px);
+  gap: 16px;
+  z-index: 3;
+  pointer-events: none;
+}
+.dir-hero-address {
+  background: #F4A82B;
+  color: var(--aca-deep);
+  padding: 14px 22px;
+  border-radius: 14px;
+  font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+  font-weight: 600;
+  line-height: 1.35;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.28);
+  pointer-events: auto;
+  max-width: 44%;
+}
+.dir-hero-address strong {
+  font-weight: 800;
+  display: block;
+  margin-bottom: 2px;
+}
+@media (max-width: 768px) {
+  .aca-hero.aca-hero-directory { padding-bottom: 200px; min-height: 50vh; }
+  .dir-hero-addresses {
+    flex-direction: column;
+    align-items: stretch;
+    bottom: 18px;
+    gap: 8px;
+  }
+  .dir-hero-address {
+    max-width: 100%;
+    font-size: 0.86rem;
+    padding: 11px 16px;
+  }
+}
+
 /* ---------- HERO SLIDER (homepage) ---------- */
 .hero-slider {
   position: relative;
