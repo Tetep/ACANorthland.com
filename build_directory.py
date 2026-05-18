@@ -335,7 +335,7 @@ def build():
       <div class="aca-header-inner">
         <a class="aca-brand" href="../"><img class="aca-brand-logo" src="../assets/logos/aca-white.png" alt="ACA Business Club"><span>
             <strong>ACA Northland</strong>
-            <small>Business Club &middot; At Castle Hall, 1894</small>
+            <small>Business Club &middot; Liberty &amp; Vivion</small>
           </span>
         </a>
         <nav class="aca-nav">
@@ -409,22 +409,22 @@ def build():
     <footer class="aca-footer">
       <div class="aca-footer-inner">
         <div class="aca-footer-brand"><img class="aca-footer-logo" src="../assets/logos/aca-white.png" alt="ACA Business Club"><strong>ACA Northland</strong>
-          <p>The regional business club for the Northland &mdash; Liberty, Gladstone, and the Kansas City Northland. Operating Castle Hall on Liberty Square since 1894.</p>
+          <p>The regional business club for the Northland. With locations at Vivion and the historic 1894 Restoration Building on Liberty Square.</p>
         </div>
         <div>
           <h3>Locations</h3>
-          <a href="../liberty/">Liberty &mdash; Castle Hall</a>
+          <a href="../liberty/">Liberty &mdash; 1894 Restoration Building</a>
           <a href="../vivion/">Vivion</a>
         </div>
         <div>
           <h3>The Club</h3>
           <a href="./">Member Directory</a>
           <a href="../contact.html">Contact &amp; Membership</a>
-          <a href="https://1894.tours" rel="noopener">1894.tours &mdash; Castle Hall</a>
+          <a href="https://1894.tours" rel="noopener">1894.tours &mdash; Book the Space</a>
         </div>
       </div>
       <div class="aca-footer-bottom">
-        &copy; ACA Northland Business Club &middot; Liberty Square &middot; Anchored at Castle Hall &middot; 1894
+        &copy; ACA Northland Business Club &middot; Liberty Square &middot; Operating at the 1894 Restoration Building
       </div>
     </footer>
 
