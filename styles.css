@@ -920,17 +920,17 @@ img { max-width: 100%; display: block; }
 .footer-copyright {
   text-align: center;
   padding: 1.5rem 1rem;
-  border-top: 1px solid rgba(0,0,0,0.08);
+  border-top: 1px solid rgba(248,246,242,0.1);
   font-family: 'Playfair Display', serif;
 }
 .footer-copyright .copyright-line {
   font-size: 0.85rem;
-  color: #6b5d4e;
+  color: #d4c5b0;
   margin: 0 0 0.5rem 0;
 }
 .footer-copyright .site-credit {
   font-size: 0.75rem;
-  color: #8a7d6e;
+  color: #a99c87;
   margin: 0;
   letter-spacing: 0.02em;
 }
