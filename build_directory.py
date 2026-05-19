@@ -409,11 +409,11 @@ def build():
     <footer class="aca-footer">
       <div class="aca-footer-inner">
         <div class="aca-footer-brand"><img class="aca-footer-logo" src="../assets/logos/aca-white.png" alt="ACA Business Club"><strong>ACA Northland</strong>
-          <p>The regional business club for the Northland. With locations at Vivion and the historic 1894 Restoration Building on Liberty Square.</p>
+          <p>The regional business club for the Northland. With locations at Vivion and the historic Restoration 1894 Building on Liberty Square.</p>
         </div>
         <div>
           <h3>Locations</h3>
-          <a href="../liberty/">Liberty &mdash; 1894 Restoration Building</a>
+          <a href="../liberty/">Liberty &mdash; Restoration 1894 Building</a>
           <a href="../vivion/">Vivion</a>
         </div>
         <div>
@@ -427,7 +427,7 @@ def build():
         <div class="footer-copyright">
           <p class="copyright-line">
             © 2026 ACA Northland Business Club · Liberty Square ·
-            Operating at the 1894 Restoration Building
+            Operating at the Restoration 1894 Building
           </p>
           <p class="site-credit">
             Site by
