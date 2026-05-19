@@ -917,6 +917,31 @@ img { max-width: 100%; display: block; }
   border-top: 1px solid rgba(248,246,242,0.12);
   font-size: 12px; color: rgba(248,246,242,0.55); text-align: center;
 }
+.footer-copyright {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  font-family: 'Playfair Display', serif;
+}
+.footer-copyright .copyright-line {
+  font-size: 0.85rem;
+  color: #6b5d4e;
+  margin: 0 0 0.5rem 0;
+}
+.footer-copyright .site-credit {
+  font-size: 0.75rem;
+  color: #8a7d6e;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+.footer-copyright .site-credit a {
+  color: #b8902f;
+  text-decoration: none;
+  font-weight: 500;
+}
+.footer-copyright .site-credit a:hover {
+  text-decoration: underline;
+}
 
 /* ---------- THREE PILLARS (homepage) ---------- */
 .pillars-section {
