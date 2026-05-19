@@ -424,7 +424,19 @@ def build():
         </div>
       </div>
       <div class="aca-footer-bottom">
-        &copy; ACA Northland Business Club &middot; Liberty Square &middot; Operating at the 1894 Restoration Building
+        <div class="footer-copyright">
+          <p class="copyright-line">
+            © 2026 ACA Northland Business Club · Liberty Square ·
+            Operating at the 1894 Restoration Building
+          </p>
+          <p class="site-credit">
+            Site by
+            <a href="https://ninja-360.com" target="_blank" rel="noopener">
+              Ninja 360 Digital Media
+            </a>
+            · © Ninja360.net
+          </p>
+        </div>
       </div>
     </footer>
 
