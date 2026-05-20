@@ -342,6 +342,7 @@ def build():
           <a href="../">Home</a>
           <a href="../liberty/">Liberty</a>
           <a href="../vivion/">Vivion</a>
+          <a href="/membership.html">Membership</a>
           <a href="./" class="active">Directory</a>
           <a href="../contact.html">Contact</a>
         </nav>
