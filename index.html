@@ -124,7 +124,7 @@
               current = i;
             }
             function next() { show((current + 1) % total); }
-            function start() { if (reduce) return; stop(); timer = setInterval(next, INTERVAL); }
+            function start() { stop(); }
             function stop() { if (timer) { clearInterval(timer); timer = null; } }
 
             dots.forEach(function (d, idx) {
