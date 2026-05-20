@@ -1223,3 +1223,186 @@ img { max-width: 100%; display: block; }
   .aca-footer-inner { grid-template-columns: 1fr; gap: 22px; }
   .aca-info-strip { padding: 36px 16px; }
 }
+
+/* ============================================================
+   MEMBERSHIP PAGE
+   ============================================================ */
+.membership-hero {
+  position: relative;
+  height: 380px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--paper-on-dark);
+}
+.membership-hero-media {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(180deg, rgba(29,47,44,0.55), rgba(15,26,23,0.78)),
+    url("https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80");
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+.membership-hero-inner {
+  position: relative;
+  z-index: 1;
+  padding: 0 24px;
+}
+.membership-hero-inner .aca-eyebrow {
+  color: var(--gold-bright);
+}
+.membership-hero-inner h1 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 800;
+  font-size: 3rem;
+  letter-spacing: -0.02em;
+  margin: 8px 0 0;
+  color: var(--paper-on-dark);
+}
+
+.membership-intro {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.membership-intro-body {
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  line-height: 1.8;
+  text-align: center;
+  margin: 0;
+}
+
+.membership-block {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+.membership-h2 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0 0 10px;
+}
+.membership-rule {
+  width: 80px;
+  height: 4px;
+  background: var(--gold);
+  margin: 0 auto 32px;
+  border-radius: 2px;
+}
+
+.privilege-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  text-align: left;
+}
+.privilege-card {
+  background: var(--paper-on-dark);
+  padding: 24px;
+  border: 1px solid var(--border-soft);
+  border-top: 5px solid var(--ink);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+}
+.privilege-card strong {
+  display: block;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.1rem;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.privilege-card span {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.membership-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+}
+.membership-steps li {
+  padding: 0 18px;
+  border-left: 1px solid var(--border);
+  text-align: left;
+}
+.membership-steps li:first-child {
+  border-left: 0;
+  padding-left: 0;
+}
+.step-eyebrow {
+  display: block;
+  color: var(--gold);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.membership-steps li strong {
+  display: block;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.15rem;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.step-body {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.membership-cta-section {
+  padding: 24px 16px 80px;
+  text-align: center;
+}
+.membership-cta {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--paper-on-dark);
+  padding: 18px 46px;
+  text-decoration: none;
+  font-family: Inter, sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+.membership-cta:hover {
+  background: var(--gold-deep);
+  color: var(--paper-on-dark);
+}
+
+@media (max-width: 768px) {
+  .membership-hero { height: 280px; }
+  .membership-hero-inner h1 { font-size: 2.2rem; }
+  .privilege-grid { grid-template-columns: 1fr 1fr; }
+  .membership-steps {
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .membership-steps li {
+    border-left: 0;
+    padding: 0;
+  }
+}
+@media (max-width: 480px) {
+  .membership-hero-inner h1 { font-size: 1.75rem; }
+  .privilege-grid { grid-template-columns: 1fr; }
+  .membership-steps { grid-template-columns: 1fr; }
+}

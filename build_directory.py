@@ -339,9 +339,9 @@ def build():
           </span>
         </a>
         <nav class="aca-nav">
-          <a href="../">Home</a>
+          <a href="../membership.html">Membership</a>
+          <a href="../vivion/">Kansas City North</a>
           <a href="../liberty/">Liberty</a>
-          <a href="../vivion/">Vivion</a>
           <a href="./" class="active">Directory</a>
           <a href="../contact.html">Contact</a>
         </nav>
