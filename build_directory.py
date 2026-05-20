@@ -335,13 +335,13 @@ def build():
       <div class="aca-header-inner">
         <a class="aca-brand" href="../"><img class="aca-brand-logo" src="../assets/logos/aca-white.png" alt="ACA Business Club"><span>
             <strong>ACA Northland</strong>
-            <small>Business Club &middot; Liberty &amp; Vivion</small>
+            <small>Business Club &middot; ACA Liberty &amp; ACA KC North</small>
           </span>
         </a>
         <nav class="aca-nav">
           <a href="../">Home</a>
-          <a href="../liberty/">Liberty</a>
-          <a href="../vivion/">Vivion</a>
+          <a href="../liberty/">ACA Liberty</a>
+          <a href="../vivion/">ACA KC North</a>
           <a href="/membership.html">Membership</a>
           <a href="/events/after-hours.html">After-Hours</a>
           <a href="./" class="active">Directory</a>
@@ -411,12 +411,12 @@ def build():
     <footer class="aca-footer">
       <div class="aca-footer-inner">
         <div class="aca-footer-brand"><img class="aca-footer-logo" src="../assets/logos/aca-white.png" alt="ACA Business Club"><strong>ACA Northland</strong>
-          <p>The regional business club for the Northland. With locations at Vivion and the historic 1894 Restoration Building on Liberty Square.</p>
+          <p>The regional business club for the Northland. With locations at ACA KC North and the historic 1894 Restoration Building on Liberty Square.</p>
         </div>
         <div>
           <h3>Locations</h3>
-          <a href="../liberty/">Liberty &mdash; 1894 Restoration Building</a>
-          <a href="../vivion/">Vivion</a>
+          <a href="../liberty/">ACA Liberty &mdash; 1894 Restoration Building</a>
+          <a href="../vivion/">ACA KC North</a>
         </div>
         <div>
           <h3>The Club</h3>
