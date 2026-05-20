@@ -221,130 +221,111 @@
         <p style="margin-top:24px;"><a class="aca-btn aca-btn-gold" href="directory/">Open the Directory</a></p>
       </section>
 
-      <!-- =========================================================
-           ACA COMMUNITY CALENDAR WIDGET
-           Drop this entire block into acanorthland.com index.html
-           wherever you want the calendar to appear.
-           Self-contained: no external CSS needed.
-           ========================================================= -->
+      <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css" rel="stylesheet">
 
       <style>
-      .aca-calendar { max-width: 900px; margin: 3rem auto; padding: 0 1rem; font-family: 'Playfair Display', Georgia, serif; color: #2b2118; }
-      .aca-calendar__header { text-align: center; margin-bottom: 1.5rem; }
-      .aca-calendar__eyebrow { display: inline-block; font-size: 0.875rem; letter-spacing: 0.12em; text-transform: uppercase; color: #7a5a3a; margin-bottom: 0.5rem; }
-      .aca-calendar__title { font-size: 2.25rem; font-weight: 700; margin: 0 0 0.5rem; color: #2b2118; }
-      .aca-calendar__subtitle { font-family: Georgia, serif; font-size: 1rem; color: #5a4a3a; margin: 0; }
-      .aca-calendar__tabs { display: flex; gap: 0; justify-content: center; border-bottom: 1px solid #d6c5a8; margin-bottom: 2rem; }
-      .aca-calendar__tab { background: transparent; border: none; border-bottom: 2px solid transparent; padding: 0.75rem 1.5rem; font-family: 'Playfair Display', Georgia, serif; font-size: 1rem; color: #7a6a5a; cursor: pointer; transition: all 0.2s; }
-      .aca-calendar__tab:hover { color: #2b2118; }
-      .aca-calendar__tab.is-active { color: #2b2118; border-bottom-color: #7a5a3a; font-weight: 700; }
-      .aca-calendar__body { min-height: 200px; }
-      .aca-calendar__loading, .aca-calendar__empty, .aca-calendar__error { text-align: center; padding: 3rem 1rem; font-family: Georgia, serif; color: #7a6a5a; }
-      .aca-calendar__error { color: #a84a3a; }
-      .aca-calendar__day { display: grid; grid-template-columns: 110px 1fr; gap: 1.5rem; align-items: start; padding: 1rem 0; border-bottom: 1px solid #ebe0cf; }
-      .aca-calendar__day:last-child { border-bottom: none; }
-      .aca-calendar__day-date { text-align: right; line-height: 1.2; }
-      .aca-calendar__day-name { display: block; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.08em; color: #7a5a3a; }
-      .aca-calendar__day-num { display: block; font-size: 1.25rem; font-weight: 700; color: #2b2118; }
-      .aca-calendar__events { list-style: none; margin: 0; padding: 0; }
-      .aca-calendar__event { display: grid; grid-template-columns: 90px 1fr; gap: 1rem; padding: 0.4rem 0; align-items: baseline; }
-      .aca-calendar__event-time { font-weight: 700; font-size: 0.95rem; color: #2b2118; }
-      .aca-calendar__event-title { font-family: Georgia, serif; font-size: 1rem; color: #3a2d1f; }
-      @media (max-width: 600px) { .aca-calendar__title { font-size: 1.75rem; } .aca-calendar__day { grid-template-columns: 80px 1fr; gap: 1rem; } .aca-calendar__event { grid-template-columns: 70px 1fr; gap: 0.75rem; } }
+      .aca-cal-wrap { max-width: 1100px; margin: 3rem auto; padding: 0 1rem; font-family: 'Playfair Display', Georgia, serif; }
+      .aca-cal-header { text-align: center; margin-bottom: 1.5rem; }
+      .aca-cal-eyebrow { display: inline-block; font-size: 0.875rem; letter-spacing: 0.12em; text-transform: uppercase; color: #7a5a3a; margin-bottom: 0.5rem; }
+      .aca-cal-title { font-size: 2.25rem; font-weight: 700; margin: 0 0 0.5rem; color: #2b2118; }
+      .aca-cal-subtitle { font-family: Georgia, serif; font-size: 1rem; color: #5a4a3a; margin: 0; }
+      .aca-cal-legend { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin: 1rem 0 2rem; font-family: Georgia, serif; font-size: 0.875rem; color: #5a4a3a; }
+      .aca-cal-legend-item { display: flex; align-items: center; gap: 0.5rem; }
+      .aca-cal-legend-dot { width: 12px; height: 12px; border-radius: 2px; display: inline-block; }
+      #aca-fullcal { background: #fffdf7; border: 1px solid #d6c5a8; border-radius: 4px; padding: 1rem; font-family: 'Playfair Display', Georgia, serif; }
+      #aca-fullcal .fc-toolbar-title { font-family: 'Playfair Display', Georgia, serif; color: #2b2118; font-weight: 700; }
+      #aca-fullcal .fc-button { background: #2b2118; border-color: #2b2118; color: #f7f1e3; font-family: 'Playfair Display', Georgia, serif; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.05em; padding: 0.5rem 0.95rem; }
+      #aca-fullcal .fc-button:hover { background: #d4a85a; border-color: #d4a85a; color: #2b2118; }
+      #aca-fullcal .fc-button-active, #aca-fullcal .fc-button-primary:not(:disabled).fc-button-active { background: #d4a85a !important; border-color: #d4a85a !important; color: #2b2118 !important; }
+      #aca-fullcal .fc-col-header-cell { background: #f7f1e3; color: #7a5a3a; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.08em; font-weight: 700; padding: 0.5rem 0; }
+      #aca-fullcal .fc-daygrid-day-number { color: #2b2118; font-family: 'Playfair Display', Georgia, serif; font-weight: 700; padding: 0.5rem; }
+      #aca-fullcal .fc-day-today { background: rgba(212, 168, 90, 0.12) !important; }
+      #aca-fullcal .fc-event { border-radius: 3px; font-family: Georgia, serif; font-size: 0.8rem; padding: 0.15rem 0.4rem; border: none; cursor: pointer; }
+      .aca-cal-loading, .aca-cal-error { text-align: center; padding: 3rem 1rem; font-family: Georgia, serif; color: #7a6a5a; }
+      .aca-cal-error { color: #a84a3a; }
+      @media (max-width: 700px) {
+        #aca-fullcal .fc-toolbar { flex-direction: column; gap: 0.75rem; }
+        #aca-fullcal .fc-button { padding: 0.4rem 0.7rem; font-size: 0.75rem; }
+        .aca-cal-title { font-size: 1.75rem; }
+      }
       </style>
 
-      <section id="aca-calendar" class="aca-calendar">
-        <header class="aca-calendar__header">
-          <span class="aca-calendar__eyebrow">ACA Kansas City Events</span>
-          <h2 class="aca-calendar__title">Community Calendar</h2>
-          <p class="aca-calendar__subtitle">
-            Upcoming ACA events and weekly club coffees for the Kansas City area.
-          </p>
+      <section class="aca-cal-wrap">
+        <header class="aca-cal-header">
+          <span class="aca-cal-eyebrow">ACA Kansas City Events</span>
+          <h2 class="aca-cal-title">Community Calendar</h2>
+          <p class="aca-cal-subtitle">Upcoming ACA events and weekly club coffees for the Kansas City area.</p>
         </header>
 
-        <div class="aca-calendar__tabs" role="tablist" aria-label="View">
-          <button class="aca-calendar__tab is-active" data-view="upcoming">Upcoming</button>
-          <button class="aca-calendar__tab" data-view="week">Week</button>
-          <button class="aca-calendar__tab" data-view="month">Month</button>
+        <div class="aca-cal-legend">
+          <span class="aca-cal-legend-item"><span class="aca-cal-legend-dot" style="background:#7a5a3a;"></span>ACA Chapter Event</span>
+          <span class="aca-cal-legend-item"><span class="aca-cal-legend-dot" style="background:#a84a3a;"></span>Venue Booked</span>
+          <span class="aca-cal-legend-item"><span class="aca-cal-legend-dot" style="background:#d4a85a;"></span>Today</span>
         </div>
 
-        <div class="aca-calendar__body" data-state="loading">
-          <div class="aca-calendar__loading">Loading events…</div>
-        </div>
+        <div id="aca-fullcal-loading" class="aca-cal-loading">Loading calendar…</div>
+        <div id="aca-fullcal" style="display:none;"></div>
+        <div id="aca-fullcal-error" class="aca-cal-error" style="display:none;">Couldn't load events right now. Check back soon.</div>
       </section>
 
+      <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
       <script>
       (function () {
-        const EVENTS_API_URL = 'https://ninja360-events-proxy.ninja-360-account.workers.dev/events?days=90';
-        const root = document.getElementById('aca-calendar');
-        if (!root) return;
-        const body = root.querySelector('.aca-calendar__body');
-        const tabs = root.querySelectorAll('.aca-calendar__tab');
-        let allEvents = [];
-        let currentView = 'upcoming';
-
-        tabs.forEach(tab => {
-          tab.addEventListener('click', () => {
-            tabs.forEach(t => t.classList.remove('is-active'));
-            tab.classList.add('is-active');
-            currentView = tab.dataset.view;
-            render();
-          });
-        });
-
+        const EVENTS_API_URL = 'https://ninja360-events-proxy.ninja-360-account.workers.dev/events?days=180';
+        const RENTAL_CALENDAR_ID = 'bYssE3FexfYA5So9l7ph';
+        const ACA_EVENTS_CALENDAR_ID = '6cW5Kc3CV6dCG7Triifb';
+        function eventColor(calId) {
+          if (calId === RENTAL_CALENDAR_ID) return '#a84a3a';
+          if (calId === ACA_EVENTS_CALENDAR_ID) return '#7a5a3a';
+          return '#5a4a3a';
+        }
+        const loadingEl = document.getElementById('aca-fullcal-loading');
+        const calEl = document.getElementById('aca-fullcal');
+        const errEl = document.getElementById('aca-fullcal-error');
         fetch(EVENTS_API_URL)
           .then(r => { if (!r.ok) throw new Error('Network ' + r.status); return r.json(); })
-          .then(data => { allEvents = (data.events || []).filter(e => !e._error); render(); })
+          .then(data => {
+            const events = (data.events || [])
+              .filter(e => !e._error && e.startTime)
+              .map(e => ({
+                id: e.id,
+                title: e.title || 'Booked',
+                start: e.startTime,
+                end: e.endTime || e.startTime,
+                backgroundColor: eventColor(e.calendarId),
+                borderColor: eventColor(e.calendarId),
+                textColor: '#fffdf7',
+                extendedProps: { calendarId: e.calendarId, rawTitle: e.title }
+              }));
+            loadingEl.style.display = 'none';
+            calEl.style.display = 'block';
+            const calendar = new FullCalendar.Calendar(calEl, {
+              initialView: 'dayGridMonth',
+              headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+              },
+              buttonText: { today: 'Today', month: 'Month', week: 'Week', day: 'Day', list: 'List' },
+              height: 'auto',
+              events: events,
+              eventTimeFormat: { hour: 'numeric', minute: '2-digit', meridiem: 'short' },
+              dayMaxEvents: 3,
+              nowIndicator: true,
+              firstDay: 0,
+              eventClick: (info) => {
+                info.jsEvent.preventDefault();
+                const start = info.event.start ? info.event.start.toLocaleString('en-US', { weekday: 'long', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : '';
+                alert(info.event.title + (start ? '\n' + start : ''));
+              }
+            });
+            calendar.render();
+          })
           .catch(err => {
-            body.dataset.state = 'error';
-            body.innerHTML = '<div class="aca-calendar__error">Couldn\'t load events right now. Check back soon.</div>';
-            console.error('[aca-calendar]', err);
+            loadingEl.style.display = 'none';
+            errEl.style.display = 'block';
+            console.error('[aca-fullcal]', err);
           });
-
-        function render() {
-          if (!allEvents.length) {
-            body.dataset.state = 'empty';
-            body.innerHTML = '<div class="aca-calendar__empty">No upcoming events scheduled. Check back soon.</div>';
-            return;
-          }
-          body.dataset.state = 'ready';
-          const grouped = groupByDay(filterByView(allEvents, currentView));
-          body.innerHTML = grouped.map(group => `
-            <div class="aca-calendar__day">
-              <div class="aca-calendar__day-date">
-                <span class="aca-calendar__day-name">${formatDayName(group.date)}</span>
-                <span class="aca-calendar__day-num">${formatMonthDay(group.date)}</span>
-              </div>
-              <ul class="aca-calendar__events">
-                ${group.events.map(e => `<li class="aca-calendar__event"><span class="aca-calendar__event-time">${formatTime(e.startTime)}</span><span class="aca-calendar__event-title">${escapeHtml(e.title)}</span></li>`).join('')}
-              </ul>
-            </div>`).join('');
-        }
-        function filterByView(events, view) {
-          const now = new Date();
-          const endOfWeek = new Date(now); endOfWeek.setDate(now.getDate() + (7 - now.getDay()));
-          const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
-          return events.filter(e => {
-            const d = new Date(e.startTime);
-            if (view === 'week') return d <= endOfWeek;
-            if (view === 'month') return d <= endOfMonth;
-            return true;
-          });
-        }
-        function groupByDay(events) {
-          const groups = new Map();
-          for (const e of events) {
-            const d = new Date(e.startTime);
-            const key = d.toISOString().slice(0, 10);
-            if (!groups.has(key)) groups.set(key, { date: d, events: [] });
-            groups.get(key).events.push(e);
-          }
-          return Array.from(groups.values());
-        }
-        function formatDayName(d) { return d.toLocaleDateString('en-US', { weekday: 'short' }); }
-        function formatMonthDay(d) { return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }); }
-        function formatTime(iso) { return new Date(iso).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }); }
-        function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]); }
       })();
       </script>
     </main>
