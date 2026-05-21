@@ -273,13 +273,11 @@
       <script>
       (function () {
         const EVENTS_API_URL = 'https://ninja360-events-proxy.ninja-360-account.workers.dev/events?days=180';
-        const RENTAL_CALENDAR_ID = 'bYssE3FexfYA5So9l7ph';
-        const ACA_EVENTS_CALENDAR_ID = '6cW5Kc3CV6dCG7Triifb';
-        function eventColor(calId) {
-          if (calId === RENTAL_CALENDAR_ID) return '#a84a3a';
-          if (calId === ACA_EVENTS_CALENDAR_ID) return '#7a5a3a';
-          return '#5a4a3a';
-        }
+function eventColor(slug) {
+        if (slug === 'liberty') return '#7a5a3a'; // Liberty events — heritage brown
+        if (slug === 'vivion')  return '#3a5a7a'; // Vivion / KC North — blue-gray accent
+        return '#5a4a3a';
+}
         const loadingEl = document.getElementById('aca-fullcal-loading');
         const calEl = document.getElementById('aca-fullcal');
         const errEl = document.getElementById('aca-fullcal-error');
@@ -293,10 +291,10 @@
                 title: e.title || 'Booked',
                 start: e.startTime,
                 end: e.endTime || e.startTime,
-                backgroundColor: eventColor(e.calendarId),
-                borderColor: eventColor(e.calendarId),
+                backgroundColor: eventColor(e.calendarSlug),
+                borderColor: eventColor(e.calendarSlug),
                 textColor: '#fffdf7',
-                extendedProps: { calendarId: e.calendarId, rawTitle: e.title }
+                extendedProps: { calendarSlug: e.calendarSlug, rawTitle: e.title }
               }));
             loadingEl.style.display = 'none';
             calEl.style.display = 'block';
