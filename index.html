@@ -31,6 +31,65 @@
     </header>
 
     <main>
+      <!-- ACA Hero Rotator (event flyers) -->
+      <section class="aca-rotator" aria-label="Upcoming ACA Northland events" aria-roledescription="carousel">
+        <div class="aca-rotator-track">
+          <div class="aca-slide is-active" role="group" aria-label="Slide 1">
+            <img src="/assets/rotators/aca-rotator-after-hours.webp"
+                 alt="After Hours — Cocktails &amp; Connections. Networking for professionals. Every 2nd Tuesday at 6 PM, ACA Liberty, 1 E Kansas St."
+                 title="After Hours — Cocktails &amp; Connections, 2nd Tuesdays at ACA Liberty"
+                 loading="eager" fetchpriority="high">
+          </div>
+          <div class="aca-slide" role="group" aria-label="Slide 2">
+            <img src="/assets/rotators/aca-rotator-501-marketing-club.webp"
+                 alt="5:01 Marketing Club — first Thursday of every month, 5:01 PM at ACA KC North, 1400 NW Vivion Rd, Kansas City MO. Practical ideas, real connections, smarter growth. Starting June 4."
+                 title="5:01 Marketing Club — First Thursdays at ACA KC North"
+                 loading="lazy">
+          </div>
+          <div class="aca-slide" role="group" aria-label="Slide 3" data-expires="2026-06-07">
+            <img src="/assets/rotators/aca-rotator-quartermania-june.webp"
+                 alt="June Quartermania — Saturday June 6, 11 AM to 1 PM at 1 E Kansas St, Liberty MO. $10 entry plus quarters to bid. Includes 3 paddles, breakfast and fun. Open to the public. Questions: 816-588-4133."
+                 title="June Quartermania — Sat June 6, open to the public"
+                 loading="lazy">
+          </div>
+        </div>
+        <div class="aca-rotator-dots" role="tablist" aria-label="Choose slide"></div>
+      </section>
+
+      <script>
+        document.querySelectorAll('.aca-rotator').forEach(function (rot) {
+          // Drop expired slides (data-expires = first day it should NOT show)
+          var today = new Date().toISOString().slice(0, 10);
+          rot.querySelectorAll('.aca-slide[data-expires]').forEach(function (s) {
+            if (today >= s.dataset.expires) s.remove();
+          });
+          var slides = rot.querySelectorAll('.aca-slide');
+          if (!slides.length) { rot.remove(); return; }
+          var dots = rot.querySelector('.aca-rotator-dots'), i = 0, timer;
+          slides.forEach(function (s, n) {
+            var b = document.createElement('button');
+            b.setAttribute('role', 'tab');
+            b.setAttribute('aria-label', 'Show slide ' + (n + 1));
+            b.addEventListener('click', function () { go(n); restart(); });
+            dots.appendChild(b);
+          });
+          function go(n) {
+            slides[i].classList.remove('is-active');
+            dots.children[i].setAttribute('aria-selected', 'false');
+            i = n % slides.length;
+            slides[i].classList.add('is-active');
+            dots.children[i].setAttribute('aria-selected', 'true');
+          }
+          function restart() {
+            clearInterval(timer);
+            if (slides.length > 1) timer = setInterval(function () { go(i + 1); }, 6000);
+          }
+          rot.addEventListener('mouseenter', function () { clearInterval(timer); });
+          rot.addEventListener('mouseleave', restart);
+          go(0); restart();
+        });
+      </script>
+
       <section class="hero-slider" aria-roledescription="carousel" aria-label="ACA Northland highlights">
         <div class="hero-slides">
           <article class="hero-slide hero-slide-sponsor hero-slide-welcome active" role="group" aria-roledescription="slide" aria-label="Slide 1 of 3 — Welcome to ACA Northland">
