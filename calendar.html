@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Community Calendar &mdash; ACA Northland</title>
+    <meta name="description" content="Community calendar for ACA Northland — upcoming events and weekly coffees at both ACA Liberty and ACA KC North.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      .calendar-toggle-row { justify-content: center; margin-bottom: 2rem; }
+      .calendar-embed-wrap { max-width: 900px; margin: 0 auto; }
+      .calendar-embed { width: 100%; border: 1px solid var(--border); border-radius: 12px; background: #fffdf7; overflow: hidden; }
+      .calendar-coffee-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 2.5rem; }
+      .calendar-coffee-card { padding: 1.8rem; border-radius: 16px; background: #fffdf7; border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
+      .calendar-coffee-card h3 { margin: 0 0 0.6rem; }
+      .calendar-coffee-card p { margin: 0.35rem 0 0; color: var(--ink-soft); line-height: 1.55; }
+      .calendar-note { max-width: 900px; margin: 0 auto 2rem; color: var(--muted); text-align: center; }
+      @media (max-width: 720px) {
+        .calendar-toggle-row { flex-direction: column; gap: 0.85rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="aca-header">
+      <div class="aca-header-inner">
+        <a class="aca-brand" href="./"><img class="aca-brand-logo" src="assets/logos/aca-white.png" alt="ACA Business Club"><span>
+            <strong>ACA Northland</strong>
+            <small>Business Club · ACA Liberty &amp; ACA KC North</small>
+          </span>
+        </a>
+        <nav class="aca-nav">
+          <a href="./">Home</a>
+          <a href="liberty/">ACA Liberty</a>
+          <a href="vivion/">ACA KC North</a>
+          <a href="/membership.html">Membership</a>
+          <a href="/events/after-hours.html">After-Hours</a>
+          <a href="directory/">Directory</a>
+          <a href="/calendar.html" class="active">Calendar</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="aca-hero">
+        <div class="aca-hero-inner">
+          <span class="aca-eyebrow">Community Calendar</span>
+          <h1>Community Calendar</h1>
+          <p class="aca-lede">Upcoming ACA events at both Northland locations.</p>
+        </div>
+      </section>
+
+      <section class="aca-section">
+        <div class="aca-note">Switch between the public ACA Liberty and ACA KC North calendars below. Both calendars are published publicly so visitors can view upcoming events and weekly coffees.</div>
+        <div class="aca-cta-row calendar-toggle-row">
+          <button type="button" class="aca-btn aca-btn-gold" data-calendar="liberty" aria-pressed="true">ACA Liberty</button>
+          <button type="button" class="aca-btn aca-btn-outline" data-calendar="kc-north" aria-pressed="false">ACA KC North</button>
+        </div>
+
+        <div class="calendar-embed-wrap" id="liberty-calendar">
+          <div class="calendar-embed">
+            <iframe
+              width="100%"
+              height="600"
+              frameborder="0"
+              scrolling="no"
+              src="https://calendar.google.com/calendar/embed?src=c_8cf97f3c93e071221cfbe6e16f446bf80bec5458a0237c256e7eb2483049b32a%40group.calendar.google.com&ctz=America%2FChicago"
+              title="ACA Liberty public event calendar">
+              Loading…
+            </iframe>
+          </div>
+        </div>
+        <div class="calendar-embed-wrap" style="display:none;" id="kc-calendar">
+          <div class="calendar-embed">
+            <iframe
+              width="100%"
+              height="600"
+              frameborder="0"
+              scrolling="no"
+              src="https://calendar.google.com/calendar/embed?src=c_6d5f302f5d980269255018079ab16164a521b5245cad0dd2699e9674d70c0a81%40group.calendar.google.com&ctz=America%2FChicago"
+              title="ACA KC North public event calendar">
+              Loading…
+            </iframe>
+          </div>
+        </div>
+
+        <div class="calendar-coffee-grid">
+          <div class="calendar-coffee-card">
+            <h3>ACA Liberty Coffee</h3>
+            <p><strong>Every Monday, 9–10 AM</strong> · Restoration 1894 Building, 1 East Kansas Street, Liberty, MO 64068</p>
+          </div>
+          <div class="calendar-coffee-card">
+            <h3>ACA KC North Coffee</h3>
+            <p><strong>Every Thursday, 9–10 AM</strong> · 1400 NW Vivion Rd, Kansas City, MO 64118</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="aca-footer">
+      <div class="aca-footer-inner">
+        <div class="aca-footer-brand"><img class="aca-footer-logo" src="assets/logos/aca-white.png" alt="ACA Business Club"><strong>ACA Northland</strong>
+          <p>The regional business club for the Northland. With locations at ACA KC North and the historic 1894 Restoration Building on Liberty Square.</p>
+        </div>
+        <div>
+          <h3>Locations</h3>
+          <a href="liberty/">ACA Liberty — 1894 Restoration Building</a>
+          <a href="vivion/">ACA KC North</a>
+        </div>
+        <div>
+          <h3>The Club</h3>
+          <a href="/membership.html">Membership</a>
+          <a href="directory/">Member Directory</a>
+          <a href="guest.html">Guest Sign-In</a>
+          <a href="contact.html">Contact</a>
+          <a href="https://1894.tours" rel="noopener">1894.tours — Book the Space</a>
+        </div>
+      </div>
+      <div class="aca-footer-bottom">
+        © 2026 ACA Northland Business Club · Liberty Square · Operating at the 1894 Restoration Building
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        function loadEmbeds() {
+          document.querySelectorAll('iframe[data-src]').forEach(function (iframe) {
+            var src = iframe.dataset.src;
+            if (src && !src.includes('PASTE_')) {
+              iframe.src = src;
+            }
+          });
+        }
+
+        var buttons = document.querySelectorAll('[data-calendar]');
+        buttons.forEach(function (button) {
+          button.addEventListener('click', function () {
+            buttons.forEach(function (btn) {
+              var isActive = btn === button;
+              btn.classList.toggle('aca-btn-gold', isActive);
+              btn.classList.toggle('aca-btn-outline', !isActive);
+              btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            });
+            document.getElementById('liberty-calendar').style.display = button.dataset.calendar === 'liberty' ? 'block' : 'none';
+            document.getElementById('kc-calendar').style.display = button.dataset.calendar === 'kc-north' ? 'block' : 'none';
+          });
+        });
+
+        loadEmbeds();
+      });
+    </script>
+  </body>
+</html>

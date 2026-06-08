@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Guest Sign-In &mdash; ACA Northland</title>
+    <meta name="description" content="Guest sign-in for ACA Northland visitors. First time at ACA Northland? Sign in so we can connect you with the right people.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="aca-header">
+      <div class="aca-header-inner">
+        <a class="aca-brand" href="./"><img class="aca-brand-logo" src="assets/logos/aca-white.png" alt="ACA Business Club"><span>
+            <strong>ACA Northland</strong>
+            <small>Business Club · ACA Liberty &amp; ACA KC North</small>
+          </span>
+        </a>
+        <nav class="aca-nav">
+          <a href="./">Home</a>
+          <a href="liberty/">ACA Liberty</a>
+          <a href="vivion/">ACA KC North</a>
+          <a href="/membership.html">Membership</a>
+          <a href="/events/after-hours.html">After-Hours</a>
+          <a href="directory/">Directory</a>
+          <a href="/calendar.html">Calendar</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="aca-hero">
+        <div class="aca-hero-inner">
+          <span class="aca-eyebrow">Guest Sign-In</span>
+          <h1>Welcome — Guest Sign-In</h1>
+          <p class="aca-lede">First time at ACA Northland? Sign in so we can connect you with the right people.</p>
+        </div>
+      </section>
+
+      <section class="aca-section">
+        <div style="max-width:900px;margin:0 auto;">
+          <iframe
+            width="100%"
+            height="900"
+            frameborder="0"
+            marginheight="0"
+            marginwidth="0"
+            src="https://docs.google.com/forms/d/e/1FAIpQLSfaDewU257Kk2k2QLesrkm0ET99aQ6h_TXerx75Uh9R3HTDgA/viewform?embedded=true"
+            title="ACA Northland guest sign-in form">
+            Loading…
+          </iframe>
+        </div>
+      </section>
+    </main>
+
+    <footer class="aca-footer">
+      <div class="aca-footer-inner">
+        <div class="aca-footer-brand"><img class="aca-footer-logo" src="assets/logos/aca-white.png" alt="ACA Business Club"><strong>ACA Northland</strong>
+          <p>The regional business club for the Northland. With locations at ACA KC North and the historic 1894 Restoration Building on Liberty Square.</p>
+        </div>
+        <div>
+          <h3>Locations</h3>
+          <a href="liberty/">ACA Liberty — 1894 Restoration Building</a>
+          <a href="vivion/">ACA KC North</a>
+        </div>
+        <div>
+          <h3>The Club</h3>
+          <a href="/membership.html">Membership</a>
+          <a href="directory/">Member Directory</a>
+          <a href="contact.html">Contact</a>
+          <a href="https://1894.tours" rel="noopener">1894.tours — Book the Space</a>
+        </div>
+      </div>
+      <div class="aca-footer-bottom">
+        © 2026 ACA Northland Business Club · Liberty Square · Operating at the 1894 Restoration Building
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('iframe[data-src]').forEach(function (iframe) {
+          var src = iframe.dataset.src;
+          if (src && !src.includes('PASTE_')) {
+            iframe.src = src;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
