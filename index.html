@@ -35,7 +35,23 @@
       <!-- ACA Hero Rotator (event flyers) -->
       <section class="aca-rotator" aria-label="Upcoming ACA Northland events" aria-roledescription="carousel">
         <div class="aca-rotator-track">
-          <div class="aca-slide is-active" role="group" aria-label="Slide 1">
+          <div class="aca-slide is-active" role="group" aria-label="Slide 1" data-expires="2026-06-10">
+            <img src="/assets/rotators/aca-rotator-brent-darden-june.webp"
+                 alt="Brent Darden — The 6 C's of Effective Networking &amp; Public Speaking. Guest speaker at ACA Northland Business After-Hours. Tuesday June 9, 6:45 PM at the Restoration 1894 Building, Liberty Square. Beer, Brats &amp; Cornhole."
+                 title="Brent Darden — After-Hours Networking, Tue June 9 at Restoration 1894"
+                 loading="eager" fetchpriority="high">
+          </div>
+
+          <div class="aca-slide" role="group" aria-label="Slide 2" data-expires="2026-06-13">
+            <a class="aca-slide-link" href="/events/after-hours.html" style="display:block;">
+                  <img src="/assets/rotators/aca-rotator-after-hours.webp"
+                   alt="After Hours — Guest Speaker: Brent Darden. Business After-Hours Networking, Tue June 9, 2026, Restoration 1894 Building, Liberty Square."
+                   title="After Hours — Guest Speaker: Brent Darden"
+                   loading="lazy">
+            </a>
+          </div>
+
+          <div class="aca-slide" role="group" aria-label="Slide 3">
             <a class="aca-slide-link" href="/events/after-hours.html" style="display:block;">
               <img src="/assets/rotators/aca-rotator-after-hours.webp"
                    alt="After Hours — Cocktails &amp; Connections. Networking for professionals. Every 2nd Tuesday at 6 PM, ACA Liberty, 1 E Kansas St."
@@ -43,7 +59,7 @@
                    loading="eager" fetchpriority="high">
             </a>
           </div>
-          <div class="aca-slide" role="group" aria-label="Slide 2">
+          <div class="aca-slide" role="group" aria-label="Slide 4">
             <a class="aca-slide-link" href="/calendar.html" style="display:block;">
               <img src="/assets/rotators/aca-rotator-501-marketing-club.webp"
                    alt="5:01 Marketing Club — first Thursday of every month, 5:01 PM at ACA KC North, 1400 NW Vivion Rd, Kansas City MO. Practical ideas, real connections, smarter growth. Starting June 4."
@@ -51,7 +67,7 @@
                    loading="lazy">
             </a>
           </div>
-          <div class="aca-slide" role="group" aria-label="Slide 3" data-expires="2026-06-07">
+          <div class="aca-slide" role="group" aria-label="Slide 5" data-expires="2026-06-07">
             <a class="aca-slide-link" href="/calendar.html" style="display:block;">
               <img src="/assets/rotators/aca-rotator-quartermania-june.webp"
                    alt="June Quartermania — Saturday June 6, 11 AM to 1 PM at 1 E Kansas St, Liberty MO. $10 entry plus quarters to bid. Includes 3 paddles, breakfast and fun. Open to the public. Questions: 816-588-4133."
@@ -171,118 +187,11 @@
       </section>
 
       <section class="aca-info-strip">
-        <h2>Real relationships. Real work. Real members.</h2>
-        <p>Business flows out of relationships. Browse the ACA Northland directory to find a baker, a printer, a tailor, a counselor, a contractor, or a coffee roaster &mdash; all members of the ACA Business Club&reg;, all in the Northland, all endorsed by a fellow member.</p>
-        <p style="margin-top:24px;"><a class="aca-btn aca-btn-gold" href="directory/">Open the Directory</a></p>
+        <h2>Calendar of Events</h2>
+        <p>See what's coming up at both Northland locations.</p>
+        <p style="margin-top:24px;"><a class="aca-btn aca-btn-gold" href="/calendar.html">View the Calendar of Events &rarr;</a></p>
       </section>
-
-      <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css" rel="stylesheet">
-
-      <style>
-      .aca-cal-wrap { max-width: 1100px; margin: 3rem auto; padding: 0 1rem; font-family: 'Playfair Display', Georgia, serif; }
-      .aca-cal-header { text-align: center; margin-bottom: 1.5rem; }
-      .aca-cal-eyebrow { display: inline-block; font-size: 0.875rem; letter-spacing: 0.12em; text-transform: uppercase; color: #7a5a3a; margin-bottom: 0.5rem; }
-      .aca-cal-title { font-size: 2.25rem; font-weight: 700; margin: 0 0 0.5rem; color: #2b2118; }
-      .aca-cal-subtitle { font-family: Georgia, serif; font-size: 1rem; color: #5a4a3a; margin: 0; }
-      .aca-cal-legend { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin: 1rem 0 2rem; font-family: Georgia, serif; font-size: 0.875rem; color: #5a4a3a; }
-      .aca-cal-legend-item { display: flex; align-items: center; gap: 0.5rem; }
-      .aca-cal-legend-dot { width: 12px; height: 12px; border-radius: 2px; display: inline-block; }
-      #aca-fullcal { background: #fffdf7; border: 1px solid #d6c5a8; border-radius: 4px; padding: 1rem; font-family: 'Playfair Display', Georgia, serif; }
-      #aca-fullcal .fc-toolbar-title { font-family: 'Playfair Display', Georgia, serif; color: #2b2118; font-weight: 700; }
-      #aca-fullcal .fc-button { background: #2b2118; border-color: #2b2118; color: #f7f1e3; font-family: 'Playfair Display', Georgia, serif; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.05em; padding: 0.5rem 0.95rem; }
-      #aca-fullcal .fc-button:hover { background: #d4a85a; border-color: #d4a85a; color: #2b2118; }
-      #aca-fullcal .fc-button-active, #aca-fullcal .fc-button-primary:not(:disabled).fc-button-active { background: #d4a85a !important; border-color: #d4a85a !important; color: #2b2118 !important; }
-      #aca-fullcal .fc-col-header-cell { background: #f7f1e3; color: #7a5a3a; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.08em; font-weight: 700; padding: 0.5rem 0; }
-      #aca-fullcal .fc-daygrid-day-number { color: #2b2118; font-family: 'Playfair Display', Georgia, serif; font-weight: 700; padding: 0.5rem; }
-      #aca-fullcal .fc-day-today { background: rgba(212, 168, 90, 0.12) !important; }
-      #aca-fullcal .fc-event { border-radius: 3px; font-family: Georgia, serif; font-size: 0.8rem; padding: 0.15rem 0.4rem; border: none; cursor: pointer; }
-      .aca-cal-loading, .aca-cal-error { text-align: center; padding: 3rem 1rem; font-family: Georgia, serif; color: #7a6a5a; }
-      .aca-cal-error { color: #a84a3a; }
-      @media (max-width: 700px) {
-        #aca-fullcal .fc-toolbar { flex-direction: column; gap: 0.75rem; }
-        #aca-fullcal .fc-button { padding: 0.4rem 0.7rem; font-size: 0.75rem; }
-        .aca-cal-title { font-size: 1.75rem; }
-      }
-      </style>
-
-      <section class="aca-cal-wrap">
-        <header class="aca-cal-header">
-          <span class="aca-cal-eyebrow">ACA Kansas City Events</span>
-          <h2 class="aca-cal-title">Community Calendar</h2>
-          <p class="aca-cal-subtitle">Upcoming ACA events and weekly club coffees for the Kansas City area.</p>
-        </header>
-
-        <div class="aca-cal-legend">
-          <span class="aca-cal-legend-item"><span class="aca-cal-legend-dot" style="background:#7a5a3a;"></span>ACA Chapter Event</span>
-          <span class="aca-cal-legend-item"><span class="aca-cal-legend-dot" style="background:#a84a3a;"></span>Venue Booked</span>
-          <span class="aca-cal-legend-item"><span class="aca-cal-legend-dot" style="background:#d4a85a;"></span>Today</span>
-        </div>
-
-        <div id="aca-fullcal-loading" class="aca-cal-loading">Loading calendar…</div>
-        <div id="aca-fullcal" style="display:none;"></div>
-        <div id="aca-fullcal-error" class="aca-cal-error" style="display:none;">Couldn't load events right now. Check back soon.</div>
-      </section>
-
-      <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
-      <script>
-      (function () {
-        const EVENTS_API_URL = 'https://ninja360-events-proxy.ninja-360-account.workers.dev/events?days=180';
-function eventColor(slug) {
-        if (slug === 'liberty') return '#7a5a3a'; // Liberty events — heritage brown
-        if (slug === 'vivion')  return '#3a5a7a'; // Vivion / KC North — blue-gray accent
-        return '#5a4a3a';
-}
-        const loadingEl = document.getElementById('aca-fullcal-loading');
-        const calEl = document.getElementById('aca-fullcal');
-        const errEl = document.getElementById('aca-fullcal-error');
-        fetch(EVENTS_API_URL)
-          .then(r => { if (!r.ok) throw new Error('Network ' + r.status); return r.json(); })
-          .then(data => {
-            const events = (data.events || [])
-              .filter(e => !e._error && e.startTime)
-              .map(e => ({
-                id: e.id,
-                title: e.title || 'Booked',
-                start: e.startTime,
-                end: e.endTime || e.startTime,
-                backgroundColor: eventColor(e.calendarSlug),
-                borderColor: eventColor(e.calendarSlug),
-                textColor: '#fffdf7',
-                extendedProps: { calendarSlug: e.calendarSlug, rawTitle: e.title }
-              }));
-            loadingEl.style.display = 'none';
-            calEl.style.display = 'block';
-            const calendar = new FullCalendar.Calendar(calEl, {
-              initialView: 'dayGridMonth',
-              headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
-              },
-              buttonText: { today: 'Today', month: 'Month', week: 'Week', day: 'Day', list: 'List' },
-              height: 'auto',
-              events: events,
-              eventTimeFormat: { hour: 'numeric', minute: '2-digit', meridiem: 'short' },
-              dayMaxEvents: 3,
-              nowIndicator: true,
-              firstDay: 0,
-              eventClick: (info) => {
-                info.jsEvent.preventDefault();
-                const start = info.event.start ? info.event.start.toLocaleString('en-US', { weekday: 'long', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : '';
-                alert(info.event.title + (start ? '\n' + start : ''));
-              }
-            });
-            calendar.render();
-          })
-          .catch(err => {
-            loadingEl.style.display = 'none';
-            errEl.style.display = 'block';
-            console.error('[aca-fullcal]', err);
-          });
-      })();
-      </script>
     </main>
-
     <footer class="aca-footer">
       <div class="aca-footer-inner">
         <div class="aca-footer-brand"><img class="aca-footer-logo" src="assets/logos/aca-white.png" alt="ACA Business Club"><strong>ACA Northland</strong>

@@ -25,23 +25,69 @@
           <a href="/membership.html">Membership</a>
           <a href="/events/after-hours.html" class="active">After-Hours</a>
           <a href="../directory/">Directory</a>
+          <a href="/calendar.html">Calendar</a>
           <a href="../contact.html">Contact</a>
         </nav>
       </div>
     </header>
 
     <main>
-<section class="after-hours-hero" style="background: linear-gradient(135deg, rgba(15,26,23,0.55) 0%, rgba(29,47,44,0.62) 45%, rgba(15,26,23,0.78) 100%), url('https://1894.tours/assets/home/brick-lounge-room.jpg') center / cover no-repeat; padding: 6rem 1rem; color: #f7f1e3; text-align: center;">
-  <div style="max-width: 900px; margin: 0 auto;">
-    <span style="display: inline-block; font-size: 0.875rem; letter-spacing: 0.18em; text-transform: uppercase; color: #d4a85a; margin-bottom: 1rem; text-shadow: 0 1px 4px rgba(0,0,0,0.45);">New Monthly Event &middot; ACA Liberty</span>
-    <h1 style="font-family: 'Playfair Display', Georgia, serif; font-size: 3.25rem; font-weight: 700; margin: 0 0 1rem; line-height: 1.1; color: #faf3e2; text-shadow: 0 3px 18px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.5);">Business After-Hours Networking</h1>
-    <p style="font-family: Georgia, serif; font-size: 1.2rem; max-width: 700px; margin: 0 auto; line-height: 1.5; text-shadow: 0 2px 8px rgba(0,0,0,0.55);">
-      Looking to grow? We're here to find and work with local startups and scrappy entrepreneurs — grow your network, one evening a month.
-    </p>
-  </div>
-</section>
+      <section class="aca-rotator" aria-label="After-Hours rotator" aria-roledescription="carousel">
+        <div class="aca-rotator-track">
+          <div class="aca-slide is-active" role="group" aria-label="Slide 1" data-expires="2026-06-13">
+            <a class="aca-slide-link" href="/events/after-hours.html" style="display:block;">
+              <img src="/assets/rotators/aca-rotator-after-hours.webp"
+                   alt="After Hours — Kickoff June 9: Beer, Brats &amp; Cornhole at Restoration 1894 Building"
+                   title="After Hours — Kickoff June 9"
+                   loading="eager" fetchpriority="high">
+            </a>
+          </div>
+          <div class="aca-slide" role="group" aria-label="Slide 2">
+            <a class="aca-slide-link" href="/calendar.html" style="display:block;">
+              <img src="/assets/rotators/aca-rotator-501-marketing-club.webp"
+                   alt="5:01 Marketing Club — First Thursdays at ACA KC North"
+                   title="5:01 Marketing Club"
+                   loading="lazy">
+            </a>
+          </div>
+        </div>
+        <div class="aca-rotator-dots" role="tablist" aria-label="Choose slide"></div>
+      </section>
 
-<section style="background: #d4a85a; color: #2b2118; padding: 1.75rem 1rem; text-align: center;">
+      <script>
+        document.querySelectorAll('.aca-rotator').forEach(function (rot) {
+          var today = new Date().toISOString().slice(0, 10);
+          rot.querySelectorAll('.aca-slide[data-expires]').forEach(function (s) {
+            if (today >= s.dataset.expires) s.remove();
+          });
+          var slides = rot.querySelectorAll('.aca-slide');
+          if (!slides.length) { rot.remove(); return; }
+          var dots = rot.querySelector('.aca-rotator-dots'), i = 0, timer;
+          slides.forEach(function (s, n) {
+            var b = document.createElement('button');
+            b.setAttribute('role', 'tab');
+            b.setAttribute('aria-label', 'Show slide ' + (n + 1));
+            b.addEventListener('click', function () { go(n); restart(); });
+            dots.appendChild(b);
+          });
+          function go(n) {
+            slides[i].classList.remove('is-active');
+            dots.children[i].setAttribute('aria-selected', 'false');
+            i = n % slides.length;
+            slides[i].classList.add('is-active');
+            dots.children[i].setAttribute('aria-selected', 'true');
+          }
+          function restart() {
+            clearInterval(timer);
+            if (slides.length > 1) timer = setInterval(function () { go(i + 1); }, 6000);
+          }
+          rot.addEventListener('mouseenter', function () { clearInterval(timer); });
+          rot.addEventListener('mouseleave', restart);
+          go(0); restart();
+        });
+      </script>
+
+<section style="background: linear-gradient(rgba(212,168,90,0.82), rgba(212,168,90,0.82)), url('/assets/rotators/aca-rotator-brent-darden-june.webp') center/cover no-repeat; color: #2b2118; padding: 1.75rem 1rem; text-align: center;">
   <div style="max-width: 900px; margin: 0 auto;">
     <p style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.4rem; font-weight: 700; margin: 0;">
       Kickoff: Tuesday, June 9 · 6:00–7:00 PM · Liberty
