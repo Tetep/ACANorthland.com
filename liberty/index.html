@@ -25,31 +25,63 @@
           <a href="/membership.html">Membership</a>
           <a href="/events/after-hours.html">After-Hours</a>
           <a href="../directory/">Directory</a>
+          <a href="/calendar.html">Calendar</a>
           <a href="../contact.html">Contact</a>
         </nav>
       </div>
     </header>
 
-    <main>
-      <!-- ACA Hero Rotator (event flyers) — Liberty: After Hours + Quartermania only -->
-      <section class="aca-rotator" aria-label="Upcoming ACA Liberty events" aria-roledescription="carousel">
-        <div class="aca-rotator-track">
-          <div class="aca-slide is-active" role="group" aria-label="Slide 1">
+    <section class="aca-rotator" aria-label="ACA Liberty upcoming events" aria-roledescription="carousel">
+      <div class="aca-rotator-track">
+
+        <div class="aca-slide is-active" role="group" aria-label="Slide 1">
+          <a href="/events/after-hours.html">
             <img src="/assets/rotators/aca-rotator-after-hours.webp"
-                 alt="After Hours — Cocktails &amp; Connections. Networking for professionals. Every 2nd Tuesday at 6 PM, ACA Liberty, 1 E Kansas St."
+                 alt="After Hours — Cocktails &amp; Connections. Every 2nd Tuesday at 6 PM, ACA Liberty, 1 E Kansas St."
                  title="After Hours — Cocktails &amp; Connections, 2nd Tuesdays at ACA Liberty"
                  loading="eager" fetchpriority="high">
-          </div>
-          <div class="aca-slide" role="group" aria-label="Slide 2" data-expires="2026-06-07">
-            <img src="/assets/rotators/aca-rotator-quartermania-june.webp"
-                 alt="June Quartermania — Saturday June 6, 11 AM to 1 PM at 1 E Kansas St, Liberty MO. $10 entry plus quarters to bid. Includes 3 paddles, breakfast and fun. Open to the public. Questions: 816-588-4133."
-                 title="June Quartermania — Sat June 6, open to the public"
-                 loading="lazy">
-          </div>
+          </a>
         </div>
-        <div class="aca-rotator-dots" role="tablist" aria-label="Choose slide"></div>
-      </section>
 
+        <div class="aca-slide" role="group" aria-label="Slide 2">
+          <a href="/events/quartermania-july/">
+            <img src="/assets/rotators/aca-rotator-quartermania-july.webp"
+                 alt="Quartermania — Saturday July 11, 11 AM to 1 PM at 1 E Kansas St, Liberty MO. Open to the public."
+                 title="Quartermania — Sat July 11, open to the public"
+                 loading="lazy">
+          </a>
+        </div>
+
+        <div class="aca-slide" role="group" aria-label="Slide 3">
+          <a href="/events/t3-trivia/">
+            <img src="/assets/rotators/aca-rotator-t3-trivia.webp"
+                 alt="Third Thursday Trivia — 1 E Kansas Street, Liberty MO. Doors open at 6, trivia begins at 6:30."
+                 title="Third Thursday Trivia — Liberty"
+                 loading="lazy">
+          </a>
+        </div>
+
+        <div class="aca-slide" role="group" aria-label="Slide 4">
+          <a href="https://www.facebook.com/share/g/18josaCbAv/" target="_blank" rel="noopener" aria-label="Sip and Savor — sign up on Facebook">
+            <img src="/assets/rotators/aca-rotator-rock-island-bridge.webp"
+                 alt="Rock Island Bridge — Sip and Savor event. Tap to sign up on Facebook."
+                 title="Rock Island Bridge — Sip and Savor. Tap to sign up."
+                 loading="lazy">
+          </a>
+        </div>
+
+        <div class="aca-slide" role="group" aria-label="Slide 5">
+          <img src="/assets/rotators/aca-rotator-coming-soon.webp"
+               alt="Coming Soon — Professional Development Workshops, Art Reception with Jan Jensen July 18, ACA Gala November 7, 2026."
+               title="Coming Soon — ACA Northland Events"
+               loading="lazy">
+        </div>
+
+      </div>
+      <div class="aca-rotator-dots" role="tablist" aria-label="Choose slide"></div>
+    </section>
+
+    <main>
       <script>
         document.querySelectorAll('.aca-rotator').forEach(function (rot) {
           var today = new Date().toISOString().slice(0, 10);
@@ -265,6 +297,14 @@
           </p>
         </div>
       </div>
+      <section class="aca-sponsor-bar" aria-label="Behind the Bar Sponsor">
+        <div class="aca-sponsor-bar-inner">
+          <p class="aca-sponsor-label">June Behind the Bar Sponsor</p>
+          <img src="/assets/rotators/aca-sponsor-bar-shorty-dejarnatt.webp"
+               alt="Shorty DeJarnatt — Our Certified Technicians Work With All Insurance Carriers"
+               loading="lazy">
+        </div>
+      </section>
     </footer>
   </body>
 </html>

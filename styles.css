@@ -1300,6 +1300,10 @@ img { max-width: 100%; display: block; }
   background: #c9a14a;
   border-color: #c9a14a;
 }
+.aca-sponsor-bar{background:#1d2a23;padding:32px 20px;text-align:center}
+.aca-sponsor-bar-inner{max-width:640px;margin:0 auto}
+.aca-sponsor-label{color:#c9a14a;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin:0 0 14px}
+.aca-sponsor-bar img{max-width:100%;width:480px;border-radius:6px;display:block;margin:0 auto}
 @media (max-width: 640px) {
   .aca-rotator { width: 100%; }
 }
