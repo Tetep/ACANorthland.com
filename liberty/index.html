@@ -113,6 +113,33 @@
           rot.addEventListener('mouseleave', restart);
           go(0); restart();
         });
+        document.querySelectorAll('.aca-inline-carousel').forEach(function (carousel) {
+          var slides = carousel.querySelectorAll('.aca-inline-carousel-slide');
+          if (!slides.length) return;
+          var dots = carousel.querySelector('.aca-carousel-dots');
+          var i = 0, timer;
+          slides.forEach(function (slide, n) {
+            var b = document.createElement('button');
+            b.setAttribute('role', 'tab');
+            b.setAttribute('aria-label', 'Show slide ' + (n + 1));
+            b.addEventListener('click', function () { go(n); restart(); });
+            dots.appendChild(b);
+          });
+          function go(n) {
+            slides[i].classList.remove('is-active');
+            if (dots.children[i]) dots.children[i].setAttribute('aria-selected', 'false');
+            i = n % slides.length;
+            slides[i].classList.add('is-active');
+            if (dots.children[i]) dots.children[i].setAttribute('aria-selected', 'true');
+          }
+          function restart() {
+            clearInterval(timer);
+            if (slides.length > 1) timer = setInterval(function () { go(i + 1); }, 5000);
+          }
+          carousel.addEventListener('mouseenter', function () { clearInterval(timer); });
+          carousel.addEventListener('mouseleave', restart);
+          go(0); restart();
+        });
       </script>
 
       <section class="aca-hero has-video-bg">
@@ -138,6 +165,30 @@
         </div>
       </section>
 
+      <section class="aca-section aca-inline-carousel" style="text-align:center;">
+        <span class="aca-eyebrow" style="margin-bottom:14px;">From the Hall</span>
+        <h2>Recent Moments in the Space</h2>
+        <p class="aca-subtitle">A few short looks inside &mdash; events, gatherings, and the work in progress on Liberty Square.</p>
+        <div class="aca-inline-carousel-track" aria-live="polite">
+          <div class="aca-inline-carousel-slide is-active" role="group" aria-label="Slide 1">
+            <div class="reel-frame">
+              <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F929761692992698%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            </div>
+          </div>
+          <div class="aca-inline-carousel-slide" role="group" aria-label="Slide 2">
+            <div class="reel-frame">
+              <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1401028097753150%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            </div>
+          </div>
+          <div class="aca-inline-carousel-slide" role="group" aria-label="Slide 3">
+            <div class="reel-frame">
+              <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1301824068519020%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="aca-carousel-dots" role="tablist" aria-label="Choose slide"></div>
+      </section>
+
       <section class="aca-section">
         <h2>The 1894 Restoration Building</h2>
         <p class="aca-subtitle">
@@ -158,37 +209,14 @@
               <a class="hub-card-cta" href="https://1894.tours" rel="noopener">Open 1894.tours &rarr;</a>
             </div>
           </article>
-          <article class="hub-card">
-            <div class="hub-card-img">
-              <img src="/assets/liberty/hall-interior.jpg" alt="Interior of the 1894 Restoration Building — exposed brick, chandeliers, hardwood floors" loading="lazy">
-            </div>
-            <div class="hub-card-body">
-              <span class="hub-badge">Member Access</span>
-              <h3>Host Something Meaningful at ACA Liberty</h3>
-              <p>ACA members may request use of the historic hall for approved gatherings,
-                  workshops, business development sessions, and private member-hosted events.
-                  Requests are reviewed for availability, fit, and member rate eligibility.</p>
-              <a class="hub-card-cta" href="https://1894.tours/Booking.html" rel="noopener">Request Member Access &rarr;</a>
-            </div>
-          </article>
         </div>
       </section>
 
-      <section class="aca-section" style="text-align:center;">
-        <span class="aca-eyebrow" style="margin-bottom:14px;">From the Hall</span>
-        <h2>Recent Moments in the Space</h2>
-        <p class="aca-subtitle">A few short looks inside &mdash; events, gatherings, and the work in progress on Liberty Square.</p>
-        <div class="reels-grid">
-          <div class="reel-frame">
-            <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F929761692992698%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-          </div>
-          <div class="reel-frame">
-            <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1401028097753150%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-          </div>
-          <div class="reel-frame">
-            <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1301824068519020%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-          </div>
-        </div>
+      <section class="aca-info-strip">
+        <h2>Liberty Square is full of ACA members.</h2>
+        <p>Browse the directory to see who's around the square &mdash; the Building hosts,
+        the shops, the makers, the service pros. All part of the club.</p>
+        <p style="margin-top:24px;"><a class="aca-btn aca-btn-gold" href="../directory/">Open the Directory</a></p>
       </section>
 
       <section class="aca-section location-section">
@@ -256,14 +284,49 @@
         </div>
         <p class="reviews-source">Reviews from <a href="https://share.google/SyJ3CO4lvVzMAY9ao" rel="noopener">Google</a></p>
       </section>
-
-      <section class="aca-info-strip">
-        <h2>Liberty Square is full of ACA members.</h2>
-        <p>Browse the directory to see who's around the square &mdash; the Building hosts,
-        the shops, the makers, the service pros. All part of the club.</p>
-        <p style="margin-top:24px;"><a class="aca-btn aca-btn-gold" href="../directory/">Open the Directory</a></p>
-      </section>
     </main>
+
+    <div class="aca-exit-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="exit-modal-title">
+      <div class="aca-exit-modal-panel">
+        <button class="aca-exit-modal-close" aria-label="Close popup">×</button>
+        <span class="aca-eyebrow">Before You Go</span>
+        <h2 id="exit-modal-title">Book the Liberty Hall at 1894 Restoration</h2>
+        <p>Looking to host a gathering, workshop, or private member event in the historic 1894 Restoration Building? Reserve the hall through our booking page before you leave.</p>
+        <p style="margin-top:24px;">
+          <a class="aca-btn aca-btn-gold" href="https://1894.tours/Booking.html" target="_blank" rel="noopener">Book at 1894.tours</a>
+        </p>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var shown = false;
+        var modal = document.querySelector('.aca-exit-modal');
+        var closeButton = document.querySelector('.aca-exit-modal-close');
+        function openModal() {
+          if (shown || !modal) return;
+          shown = true;
+          modal.setAttribute('aria-hidden', 'false');
+        }
+        function closeModal() {
+          if (!modal) return;
+          modal.setAttribute('aria-hidden', 'true');
+        }
+        document.addEventListener('mouseout', function (event) {
+          if (shown) return;
+          if (event.relatedTarget === null && event.clientY <= 0) {
+            openModal();
+          }
+        });
+        document.addEventListener('keydown', function (event) {
+          if (event.key === 'Escape') closeModal();
+        });
+        if (closeButton) closeButton.addEventListener('click', closeModal);
+        if (modal) modal.addEventListener('click', function (event) {
+          if (event.target === modal) closeModal();
+        });
+      })();
+    </script>
 
     <footer class="aca-footer">
       <div class="aca-footer-inner">

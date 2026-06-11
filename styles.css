@@ -1176,8 +1176,55 @@ img { max-width: 100%; display: block; }
   box-shadow: 0 8px 24px rgba(15,26,23,0.22);
 }
 .reel-frame iframe { display: block; }
+.aca-inline-carousel .aca-inline-carousel-track {
+  position: relative;
+  width: 100%;
+  max-width: 680px;
+  min-height: 476px;
+  margin: 24px auto 0;
+}
+.aca-inline-carousel-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity .6s ease;
+}
+.aca-inline-carousel-slide.is-active {
+  opacity: 1;
+}
+.aca-inline-carousel .reel-frame {
+  width: 100%;
+  height: 100%;
+}
+.aca-inline-carousel .aca-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px auto 0;
+  max-width: 680px;
+}
+.aca-inline-carousel .aca-carousel-dots button {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1px solid #f5efe0;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+.aca-inline-carousel .aca-carousel-dots button[aria-selected="true"] {
+  background: #c9a14a;
+  border-color: #c9a14a;
+}
 @media (max-width: 600px) {
   .reels-grid { gap: 18px; }
+  .aca-inline-carousel .aca-inline-carousel-track {
+    min-height: auto;
+  }
+  .aca-inline-carousel .reel-frame {
+    aspect-ratio: 9 / 16;
+    height: auto;
+  }
 }
 
 /* ============================================================
@@ -1304,6 +1351,14 @@ img { max-width: 100%; display: block; }
 .aca-sponsor-bar-inner{max-width:640px;margin:0 auto}
 .aca-sponsor-label{color:#c9a14a;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin:0 0 14px}
 .aca-sponsor-bar img{max-width:100%;width:480px;border-radius:6px;display:block;margin:0 auto}
+.aca-exit-modal{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(10,16,12,0.78)}
+.aca-exit-modal[aria-hidden="false"]{display:flex}
+.aca-exit-modal-panel{position:relative;width:100%;max-width:540px;padding:32px 28px 28px;background:#ffffff;border-radius:20px;box-shadow:0 28px 60px rgba(3,8,5,0.25);color:#102217}
+.aca-exit-modal-close{position:absolute;top:18px;right:18px;border:none;background:transparent;color:#102217;font-size:1.6rem;line-height:1;cursor:pointer}
+.aca-exit-modal h2{margin:0 0 16px}
+.aca-exit-modal p{margin:0 0 18px;color:#2f342e;line-height:1.7}
+.aca-exit-modal .aca-btn{width:100%;}
 @media (max-width: 640px) {
   .aca-rotator { width: 100%; }
+  .aca-exit-modal-panel { padding: 24px 18px; }
 }
