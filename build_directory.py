@@ -5,8 +5,8 @@ Sources (add new sources by adding to SOURCES list):
 - Gladstone Chamber — schema: Letter, Name, Address, Phone, Fax, Category, Contacts, MemberSince, Description, Tags
 
 Each row is normalized to a common Member record. Cards show ONLY the fields
-the source actually provides — no fabrication. Gladstone has richer data
-(descriptions + member-since), Liberty has links to its Chamber detail page.
+the source actually provides — no fabrication. External chamber detail links
+are intentionally not rendered on the ACA site.
 
 Idempotent. Re-run any time the CSV(s) update:  python build_directory.py
 """
@@ -182,12 +182,8 @@ def render_card(m):
         else html.escape(m["source_label"])
     )
 
-    # CTA: detail URL if available (Liberty), otherwise just source label
-    cta = (
-        f'<a class="dir-card-cta" href="{html.escape(m["detail_url"])}" target="_blank" rel="noopener">View Chamber listing &rarr;</a>'
-        if m["detail_url"] else
-        '<span class="dir-card-cta" style="opacity:0.5;border-bottom-color:transparent;">—</span>'
-    )
+    # Legacy chamber detail links are intentionally suppressed on the ACA site.
+    cta = '<span class="dir-card-cta" style="opacity:0.5;border-bottom-color:transparent;">Directory profile coming soon</span>'
 
     tags = []
     if ind != "other":
