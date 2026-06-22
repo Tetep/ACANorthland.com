@@ -3,7 +3,7 @@
 The regional business club for the Kansas City Northland — Liberty, Gladstone, and surrounding. Static site, GitHub Pages hosting (when wired up).
 
 ## Sites in the family
-- **acanorthland.com** (this repo) — parent brand, location hub, member directory
+- **acanorthland.com** (this repo) — parent brand, location hub, directory landing page
 - **1894.tours** — Castle Hall, Liberty (venue-specific narrative + booking)
 
 ## Structure
@@ -12,8 +12,8 @@ ACANorthland.com/
 ├── index.html          # Hub home + location picker (Liberty / Vivion)
 ├── liberty/index.html  # Castle Hall summary + booking CTA -> 1894.tours
 ├── vivion/index.html   # Vivion location skeleton (Coming Soon)
-├── directory/          # Member directory (showpiece)
-│   └── index.html      # Card grid, search, filter chips, A-Z bar, availability dots
+├── directory/          # Directory landing page
+│   └── index.html      # Placeholder while the ACA member directory is rebuilt
 ├── contact.html        # Shared contact + calendar placeholder
 ├── assets/             # Logos, photos
 ├── styles.css          # Heritage palette, mobile-first, 480/768 breakpoints
@@ -23,15 +23,9 @@ ACANorthland.com/
 ```
 
 ## Directory page
-The directory is the showpiece per the May 2026 research. Each member card has:
-- Logo placeholder + name + one-line positioning + green availability dot
-- Two-line bio (member since YYYY — what they do)
-- Tag chips: circle (Castle Hall Hosts / Retail on the Square / Services & Pros / Makers) + industry
-- "View profile" CTA
-
-Filters: keyword search, availability toggle, circle (single-select), industry (single-select), persistent A-Z bar. Vanilla JS, no dependencies.
-
-**Sample data:** 8 placeholder members. Replace with real ACA Northland member data when ready.
+The old chamber-based directory has been removed from the live site code. `/directory/`
+is now a simple landing page while a real ACA Northland member directory is rebuilt with
+current member data.
 
 ## Brand
 - Palette: cream paper, ink/dark brown, gold (#c48c37), crimson, forest green availability dot
