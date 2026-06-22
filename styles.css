@@ -110,6 +110,9 @@ img { max-width: 100%; display: block; }
 .aca-nav a:hover { color: var(--gold-bright); }
 .aca-nav a.active { color: var(--gold-bright); border-bottom: 1.5px solid var(--gold-bright); padding-bottom: 4px; }
 
+/* Hide the Directory link in the main navigation */
+.aca-nav a[href*="directory"] { display: none !important; }
+
 /* ---------- HERO ---------- */
 .aca-hero {
   position: relative; min-height: 60vh;
